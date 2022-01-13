@@ -1,6 +1,11 @@
 package logika;
 
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  *  Class HerniPlan - třída představující mapu a stav adventury.
  * 
@@ -15,6 +20,7 @@ package logika;
 public class HerniPlan {
 
     private Prostor aktualniProstor;
+    private Set<Postava> postavy;
     private Batoh batoh;
     public int vydrz;
     
@@ -25,6 +31,7 @@ public class HerniPlan {
     public HerniPlan() {
         zalozProstoryHry();
         batoh = new Batoh(10, 0);
+        postavy = new HashSet<>();
         vydrz = 10;
 
     }
@@ -74,11 +81,12 @@ public class HerniPlan {
         hospodaKuchyn.vlozVec(new Vec("špagety", true, "Dobrota."));
         hospodaKuchyn.vlozVec(new Vec("obracečka", true, "K čemu je asi tato věc?"));
 
-        // Vec houba = new Vec("houba", true)
-        // Vec strom = new Vec("strom", false)
 
-        //louka.vlozVec(houba);
-        //louka.vlozVec(strom);
+        PostavaHospodsky hospodsky = new PostavaHospodsky("Hospodský", false, "Co chceš?\n", "xx", "parek", "mobil");
+
+        hospodaHlavniMistnost.vlozPostavu(hospodsky);
+//        postavy.add(hospodsky);
+
     }
     
     /**
@@ -90,6 +98,7 @@ public class HerniPlan {
     public Prostor getAktualniProstor() {
         return aktualniProstor;
     }
+
 
     public Batoh getBatoh() {
         return this.batoh;
@@ -104,5 +113,8 @@ public class HerniPlan {
        aktualniProstor = prostor;
     }
 
+    public Set<Postava> getPostavy() {
+        return postavy;
+    }
 
 }

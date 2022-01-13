@@ -6,9 +6,9 @@ package logika;
  * @author    Marek Vaníček
  * @version   školní rok 2021/2022
  */
-public class PrikazBatoh implements IPrikaz {
+public class PrikazMluv implements IPrikaz {
 
-    private static final String NAZEV = "batoh";
+    private static final String NAZEV = "mluv";
     private HerniPlan plan;
 
     /**
@@ -16,20 +16,30 @@ public class PrikazBatoh implements IPrikaz {
      *
      *  @param plan herní plán, ve kterém se bude ve hře "chodit"
      */
-    public PrikazBatoh(HerniPlan plan) {
+    public PrikazMluv(HerniPlan plan) {
         this.plan = plan;
 
     }
 
     /**
-     * Po zavolání příkazu se vypíše obsah batohu
+     * Po zavolání příkazu se vypíše obsah batohu????
      *
      * @param   - vola se bez parametru
      * @return  - Vrací obsah batohu
      */
-
+    @Override
     public String provedPrikaz(String... parametry) {
-        return "Pracně otevírám batoh\n" + plan.getBatoh().seznamVeci();
+        if( parametry.length == 0 ){
+            return "Musíš říct s kým chceš mluvit";
+        } else if (parametry.length > 1){
+            return "Můžeš mluvit jen s jednou postavou současně";
+        } else {
+            if(plan.getAktualniProstor().vratPostavu(parametry[0]) != null){
+                String rozhovor = plan.getAktualniProstor().vratPostavu(parametry[0]).mluv();
+                return rozhovor;
+            }
+        }
+        return parametry[0] + " zde není";
     }
 
     /**

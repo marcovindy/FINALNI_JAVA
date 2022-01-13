@@ -21,6 +21,7 @@ public class Prostor {
     private String popis;
     private Set<Prostor> vychody;
     private List<Vec> veci;
+    private Set<Postava> postavy;
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -35,6 +36,7 @@ public class Prostor {
         this.popis = popis;
         vychody = new HashSet<>();
         veci = new ArrayList<>();
+        postavy = new HashSet<>();
     }
 
     /**
@@ -117,6 +119,7 @@ public class Prostor {
     public String dlouhyPopis(int vydrz) {
         return "Jsi v mistnosti/prostoru " + popis + ".\n"
                 + "Věci: " + seznamVeci() + "\n"
+                + "Postavy v prostoru: " + seznamPostav() + "\n"
                 + popisVychodu() + "\n"
                 + "Aktuální výdrž: " + vydrz;
     }
@@ -194,6 +197,31 @@ public class Prostor {
         }
         return seznam;
     }
+
+    public Postava vlozPostavu(Postava postava) {
+        postavy.add(postava);
+
+        return postava;
+    }
+
+    public String seznamPostav() {
+        String seznam = "";
+        for( Postava postava : postavy ){
+            seznam = seznam + postava.getJmeno() + " ";
+        }
+        return seznam;
+    }
+
+    public Postava vratPostavu(String jmenoPostavy) {
+          Postava potrebnaPostava = null;
+          for ( Postava postava : postavy ) {
+              if (jmenoPostavy.equals(postava.getJmeno())){
+                  potrebnaPostava = postava;
+              }
+          }
+          return potrebnaPostava;
+    }
+
 
     /**
      * Vrací kolekci obsahující prostory, se kterými tento prostor sousedí.
