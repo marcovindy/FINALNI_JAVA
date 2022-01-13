@@ -73,15 +73,16 @@ public class HerniPlan {
         zachodZeny.vlozVec(new Vec("hodinky", true, "Kdo to tu asi nechal? Uvidíme."));
         zachodZeny.vlozVec(new Vec("záchod", false, "Sem se koná poptřeba."));
         zachodZeny.vlozVec(new Vec("peněženka", true, "Tu jsem hledal!"));
-        PostavaHospodsky holkaZeZachodu = new PostavaHospodsky("holka_ze_záchodů",
-                false, "[Holka ze záchodů]: Blééééé.! #$%^@ Grk. Ueeee!\n" +
+        PostavaHolkaZeZachodu holkaZeZachodu = new PostavaHolkaZeZachodu("holka_ze_záchodů",
+                false, false,
+                "[Holka ze záchodů]: Blééééé.! #$%^@ Grk. Ueeee!\n" +
                 "[Ja]: No teda... A pak že já vypadám, že mám dost.\n" +
                 "[Holka ze záchodů]: Co tady děláš. Nech mě být, odejdi.\n" +
                 "[Ja]: Myslím, že potřebuješ trochu vody, počkej.\n",
                 "[Hospodský]: Teď nemám čas\n",
-                "parek",
-                "mobil");
-        hospodaHlavniMistnost.vlozPostavu(holkaZeZachodu);
+                "voda",
+                "");
+        zachodZeny.vlozPostavu(holkaZeZachodu);
 
         // === Naplnění místnosti - Hospoda hlavní místnost ===
 
@@ -90,7 +91,7 @@ public class HerniPlan {
         hospodaHlavniMistnost.vlozVec(new Vec("stůl", false, "Velký stůl."));
         hospodaHlavniMistnost.vlozVec(new Vec("židle", false, "Na tomto se sedí."));
         hospodaHlavniMistnost.vlozVec(new Vec("podtácek", true, "Pěkně mokrej podtácek."));
-        PostavaHospodsky hospodsky = new PostavaHospodsky("hospodský", false,
+        PostavaHospodsky hospodsky = new PostavaHospodsky("hospodský", false, false,
                 "[Hospodský]: No ty ale vypadáš! Měl bys jít domů, tady spát nemůžeš.\n" +
                 "[Já]: Hned půjdu, akorát si nemůžu vzpomenout, kde mám své věci....\n" +
                 "[Hospodský]: Podívej se na záchody, tam jsi strávil pomalu celej večer.\n" +
@@ -99,9 +100,11 @@ public class HerniPlan {
                 "parek",
                 "mobil");
         hospodaHlavniMistnost.vlozPostavu(hospodsky);
-        PostavaHospodsky opilec = new PostavaHospodsky("opilec", false, "Co chceš?\n", "xx", "parek", "mobil");
+        PostavaHospodsky opilec = new PostavaHospodsky("opilec", false, false,
+                "Co chceš?\n", "xx", "parek", "mobil");
         hospodaHlavniMistnost.vlozPostavu(opilec);
-        PostavaHospodsky servirka = new PostavaHospodsky("servírka", false, "Co chceš?\n", "xx", "parek", "mobil");
+        PostavaHospodsky servirka = new PostavaHospodsky("servírka", false, false,
+                "Co chceš?\n", "xx", "parek", "mobil");
         hospodaHlavniMistnost.vlozPostavu(servirka);
 
 

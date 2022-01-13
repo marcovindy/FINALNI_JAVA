@@ -13,18 +13,20 @@ public class Postava implements IPostava {
 
     private String jmeno;
     private boolean probehlDulezityRozhovor;
+    private boolean dostalaSvouVec;
     private String hlavniRec;
     private String dalsiRec;
     private String vecKterouPotrebuje;
     private String vecKterouNabidne;
 
-    public Postava(String jmeno, boolean probehlDulezityRozhovor, String hlavniRec, String dalsiRec, String vecKterouPotrebuje, String vecKterouNabidne) {
+    public Postava(String jmeno, boolean probehlDulezityRozhovor, boolean dostalaSvouVec, String hlavniRec, String dalsiRec, String vecKterouPotrebuje, String vecKterouNabidne) {
         this.jmeno = jmeno;
         this.probehlDulezityRozhovor = probehlDulezityRozhovor;
         this.hlavniRec = hlavniRec;
         this.dalsiRec = dalsiRec;
         this.vecKterouPotrebuje = vecKterouPotrebuje;
         this.vecKterouNabidne = vecKterouNabidne;
+        this.dostalaSvouVec = dostalaSvouVec;
     }
 
 
@@ -40,10 +42,22 @@ public class Postava implements IPostava {
         }
     }
 
+    public boolean dej(Vec vec){
+        if( vec.getNazev().equals(vecKterouPotrebuje) ) {
+            dostalaSvouVec = true;
+            return true;
+        }
+        return false;
+    }
 
 
+    public boolean isDostalaSvouVec() {
+        return dostalaSvouVec;
+    }
 
-
+    public void setDostalaSvouVec(boolean dostalaSvouVec) {
+        this.dostalaSvouVec = dostalaSvouVec;
+    }
 
     public String getJmeno() {
         return jmeno;

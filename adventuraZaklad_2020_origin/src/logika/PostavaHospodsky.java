@@ -9,11 +9,12 @@ public class PostavaHospodsky extends Postava {
 
     public PostavaHospodsky( String jmeno,
             boolean probehlDulezityRozhovor,
+            boolean dostalaSvouVec,
             String hlavniRec,
             String dalsiRec,
             String vecKterouPotrebuje,
             String vecKterouNabidne ) {
-        super(jmeno, probehlDulezityRozhovor, hlavniRec, dalsiRec, vecKterouPotrebuje, vecKterouNabidne);
+        super(jmeno, probehlDulezityRozhovor, dostalaSvouVec, hlavniRec, dalsiRec, vecKterouPotrebuje, vecKterouNabidne);
         veciPostavy = new ArrayList<>();
     }
 
