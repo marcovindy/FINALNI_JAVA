@@ -21,14 +21,20 @@ public class Batoh {
     public String seznamVeci(){
         String seznam = "";
         for( Vec vec : obsahBatohu ){
-            seznam = seznam + vec.getNazev() + " ";
+            seznam = seznam + vec.getNazev() + ", ";
 
         }
         return seznam;
     }
 
     public String dlouhyPopis(){
-        return "Obsah batohu: " + seznamVeci();
+        String text = "Pracně otevírám batoh\n";
+        if( obsahBatohu.size() <= 0 ){
+            text += "Obsah batohu: \n" + "Nic jsem v batohu nenašel";
+        } else {
+            text += "Obsah batohu: \n" + seznamVeci();
+        }
+        return text;
     }
 
     public boolean obsahujeVec(String nazevVeci){

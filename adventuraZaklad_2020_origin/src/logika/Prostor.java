@@ -118,10 +118,10 @@ public class Prostor {
      */
     public String dlouhyPopis(int vydrz) {
         return "Jsi v mistnosti/prostoru " + popis + ".\n"
-                + "Věci: " + seznamVeci() + "\n"
-                + "Postavy v prostoru: " + seznamPostav() + "\n"
+                + "Věci v prostoru: " + seznamVeci() + "\n"
+                + "Lidé v prostoru: " + seznamPostav() + "\n"
                 + popisVychodu() + "\n"
-                + "Aktuální výdrž: " + vydrz;
+                + "Výdrž: " + vydrz;
     }
 
     /**
@@ -207,7 +207,7 @@ public class Prostor {
     public String seznamPostav() {
         String seznam = "";
         for( Postava postava : postavy ){
-            seznam = seznam + postava.getJmeno() + " ";
+            seznam = seznam + postava.getJmeno() + ", ";
         }
         return seznam;
     }

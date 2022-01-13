@@ -29,7 +29,7 @@ public class PrikazBatoh implements IPrikaz {
      */
 
     public String provedPrikaz(String... parametry) {
-        return "Pracně otevírám batoh\n" + plan.getBatoh().seznamVeci();
+        return plan.getBatoh().dlouhyPopis();
     }
 
     /**

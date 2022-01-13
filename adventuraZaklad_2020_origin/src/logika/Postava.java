@@ -34,9 +34,9 @@ public class Postava implements IPostava {
 
         if( !(probehlDulezityRozhovor) ) {
             probehlDulezityRozhovor = true;
-            return hlavniRec;
+            return "\n" + hlavniRec;
         } else {
-            return dalsiRec;
+            return "\n" + dalsiRec;
         }
     }
 

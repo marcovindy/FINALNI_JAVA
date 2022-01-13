@@ -16,11 +16,14 @@ public class PrikazSeber implements IPrikaz {
     }
 
     public String provedPrikaz(String... parametry) {
+        String text;
         if (parametry.length == 0) {
-            return "Musíš mi říct, co mám sebrat.";
+            text = "Musíš mi říct, co mám sebrat.";
+            return text;
         }
         else if (parametry.length > 1) {
-            return "Nemůžeš sebrat více věcí zároveň.";
+            text = "Nemůžeš sebrat více věcí zároveň.";
+            return text;
         }
         else {
             String nazevVeci = parametry[0];
@@ -28,17 +31,20 @@ public class PrikazSeber implements IPrikaz {
                 Vec pozadovanaVec = plan.getAktualniProstor().vyberVec(nazevVeci);
                 if ( pozadovanaVec == null || !(pozadovanaVec.getPrenositelna()) ) {
                     plan.getAktualniProstor().vlozVec(pozadovanaVec);
-                    return nazevVeci + " se nedá přenášet";
+                    text = nazevVeci + " se nedá přenášet";
+                    return text;
                 }else{
 
                     boolean povedloSeVlozit = plan.getBatoh().vlozVec(pozadovanaVec);
                     if(povedloSeVlozit){
                         plan.getAktualniProstor().odeberVec(pozadovanaVec);
-                        return nazevVeci + " jsi vzal z mistnosti a dal do batohu";
+                        text = pozadovanaVec.getPopis() + "\n";
+                        return  text + "Vložil jsi do batohu: " + nazevVeci + ".";
                     }
 
                     plan.getAktualniProstor().vlozVec(pozadovanaVec);
-                    return nazevVeci + " se snazis nacpat do plneho batohu";
+                    text = nazevVeci + " se snazis nacpat do plneho batohu";
+                    return text;
                 }
             }else{
                 return nazevVeci + " neni v mistnosti";

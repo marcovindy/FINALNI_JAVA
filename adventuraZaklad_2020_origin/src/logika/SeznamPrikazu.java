@@ -1,5 +1,6 @@
 package logika;
 
+import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ public class SeznamPrikazu {
     public SeznamPrikazu() {
         mapaSPrikazy = new HashMap<>();
     }
+
 
 
     /**
