@@ -29,17 +29,15 @@ public class Postava implements IPostava {
         this.dostalaSvouVec = dostalaSvouVec;
     }
 
-
-
-
     public String mluv(){
-
-        if( !(probehlDulezityRozhovor) ) {
+        String text = "\n";
+        if ( !(probehlDulezityRozhovor) ) {
             probehlDulezityRozhovor = true;
-            return "\n" + hlavniRec;
+            text += hlavniRec;
         } else {
-            return "\n" + dalsiRec;
+            text += dalsiRec;
         }
+        return text;
     }
 
     public boolean dej(Vec vec){
@@ -49,7 +47,6 @@ public class Postava implements IPostava {
         }
         return false;
     }
-
 
     public boolean isDostalaSvouVec() {
         return dostalaSvouVec;

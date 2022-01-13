@@ -1,5 +1,6 @@
 package logika;
 
 public interface IPostava {
-    public String mluv();
+    String mluv();
+    boolean dej(Vec vec);
 }

@@ -112,6 +112,9 @@ public class HerniPlan {
         hospodaKuchyn.vlozVec(new Vec("nůž", true, "Assissin's Creed Mode Activated!"));
         hospodaKuchyn.vlozVec(new Vec("špagety", true, "Dobrota."));
         hospodaKuchyn.vlozVec(new Vec("obracečka", true, "K čemu je asi tato věc?"));
+        PostavaHospodsky kuchar = new PostavaHospodsky("servírka", false, false,
+                "Co chceš?\n", "xx", "parek", "mobil");
+        hospodaHlavniMistnost.vlozPostavu(kuchar);
 
 
 
