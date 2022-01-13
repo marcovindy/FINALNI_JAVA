@@ -1,9 +1,6 @@
 package logika;
 
-
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -40,7 +37,7 @@ public class HerniPlan {
      *  Jako výchozí aktuální prostor nastaví domeček.
      */
     private void zalozProstoryHry() {
-        // vytvářejí se jednotlivé prostory
+        // === vytvářejí se jednotlivé prostory ===
         Prostor hospodaHlavniMistnost = new Prostor("hospoda_hlavní_místnost","Žižkovská hospoda plná ožralých lidí");
         Prostor predKoleji = new Prostor("pred_koleji", "U vchodu před kolejí, pro tebe známé místo, kde na tebe pořád civí vrátný přes okno");
         Prostor zachodMuzi = new Prostor("záchod_muži","Staré poblité záchody s hnědými věcmi na stěnách a stropu");
@@ -48,7 +45,7 @@ public class HerniPlan {
         Prostor hospodaKuchyn = new Prostor("hospoda_kuchyn","Zaplivaná kuchyň, kde pobíhají šváby a krysy");
         Prostor predHospodou = new Prostor("pred_hospodou","Ulice před hospodou, kde slyšíš policejní sirény a \"zpěv\" opilců");
         
-        // přiřazují se průchody mezi prostory (sousedící prostory)
+        // === přiřazují se průchody mezi prostory (sousedící prostory) ===
         hospodaHlavniMistnost.setVychod(zachodMuzi);
         hospodaHlavniMistnost.setVychod(zachodZeny);
         hospodaHlavniMistnost.setVychod(hospodaKuchyn);
@@ -60,19 +57,19 @@ public class HerniPlan {
 
         predHospodou.setVychod(hospodaHlavniMistnost);
                 
-        aktualniProstor = zachodMuzi;  // hra začíná v domečku
+        aktualniProstor = zachodMuzi;  // hra začíná na pánských záchodech
 
         // === Naplnění místnosti - Záchod muži ===
 
-        zachodMuzi.vlozVec(new Vec("hadr", true, "Sakra ušpiněný hadr."));
-        zachodMuzi.vlozVec(new Vec("hnědá_hmota", true, "Fůj, co to je za strašnou věc, roztéká se po ruce."));
-        zachodMuzi.vlozVec(new Vec("záchod", false, "Sem se koná poptřeba."));
+        zachodMuzi.vlozVec(new Vec("hadr", true, "Sakra ušpiněný hadr.", false));
+        zachodMuzi.vlozVec(new Vec("hnědá_hmota", true, "Fůj, co to je za strašnou věc, roztéká se po ruce.", false));
+        zachodMuzi.vlozVec(new Vec("záchod", false, "Sem se koná poptřeba.", false));
 
         // === Naplnění místnosti - Záchod ženy ===
 
-        zachodZeny.vlozVec(new Vec("hodinky", true, "Kdo to tu asi nechal? Uvidíme."));
-        zachodZeny.vlozVec(new Vec("záchod", false, "Sem se koná poptřeba."));
-        zachodZeny.vlozVec(new Vec("peněženka", true, "Tu jsem hledal!"));
+        zachodZeny.vlozVec(new Vec("hodinky", true, "Kdo to tu asi nechal? Uvidíme.", false));
+        zachodZeny.vlozVec(new Vec("záchod", false, "Sem se koná poptřeba.", false));
+        zachodZeny.vlozVec(new Vec("peněženka", true, "Tu jsem hledal!", false));
         PostavaHolkaZeZachodu holkaZeZachodu = new PostavaHolkaZeZachodu("holka_ze_záchodů",
                 false, false,
                 "[Holka ze záchodů]: Blééééé.! #$%^@ Grk. Ueeee!\n" +
@@ -81,16 +78,18 @@ public class HerniPlan {
                 "[Ja]: Myslím, že potřebuješ trochu vody, počkej.\n",
                 "[Hospodský]: Teď nemám čas\n",
                 "voda",
-                "");
+                "<NIC>");
         zachodZeny.vlozPostavu(holkaZeZachodu);
 
         // === Naplnění místnosti - Hospoda hlavní místnost ===
 
-        hospodaHlavniMistnost.vlozVec(new Vec("voda", true, "Voda, proč ne."));
-        hospodaHlavniMistnost.vlozVec(new Vec("pivo", true, "Pivo zdarma, to mám ale štěstí!"));
-        hospodaHlavniMistnost.vlozVec(new Vec("stůl", false, "Velký stůl."));
-        hospodaHlavniMistnost.vlozVec(new Vec("židle", false, "Na tomto se sedí."));
-        hospodaHlavniMistnost.vlozVec(new Vec("podtácek", true, "Pěkně mokrej podtácek."));
+        hospodaHlavniMistnost.vlozVec(new Vec("voda", true, "Voda, proč ne.", true));
+        hospodaHlavniMistnost.vlozVec(new Vec("pivo", true, "Pivo zdarma, to mám ale štěstí!", true));
+        hospodaHlavniMistnost.vyberVec("voda").setBodyVydrze(1);
+        hospodaHlavniMistnost.vyberVec("pivo").setBodyVydrze(3);
+        hospodaHlavniMistnost.vlozVec(new Vec("stůl", false, "Velký stůl.", false));
+        hospodaHlavniMistnost.vlozVec(new Vec("židle", false, "Na tomto se sedí.", false));
+        hospodaHlavniMistnost.vlozVec(new Vec("podtácek", true, "Pěkně mokrej podtácek.", false));
         PostavaHospodsky hospodsky = new PostavaHospodsky("hospodský", false, false,
                 "[Hospodský]: No ty ale vypadáš! Měl bys jít domů, tady spát nemůžeš.\n" +
                 "[Já]: Hned půjdu, akorát si nemůžu vzpomenout, kde mám své věci....\n" +
@@ -100,21 +99,34 @@ public class HerniPlan {
                 "parek",
                 "mobil");
         hospodaHlavniMistnost.vlozPostavu(hospodsky);
-        PostavaHospodsky opilec = new PostavaHospodsky("opilec", false, false,
-                "Co chceš?\n", "xx", "parek", "mobil");
+        PostavaOpilec opilec = new PostavaOpilec("opilec", false, false,
+                "Co chceš?\n", "xx", "pivo", "<NIC>");
         hospodaHlavniMistnost.vlozPostavu(opilec);
-        PostavaHospodsky servirka = new PostavaHospodsky("servírka", false, false,
-                "Co chceš?\n", "xx", "parek", "mobil");
+        PostavaServirka servirka = new PostavaServirka("servírka", false, false,
+                "[Ja]: Můžu zaplatit?\n" +
+                        "[Servirka]: V pořádku už to udělali kamarádi s kterýma jsi tu byl\n" +
+                        "[Ja]: Aah super a neviděla jste tu mobil a klíče, nějak jsem je vytratil.\n" +
+                        "[Servirka]: Nějaký muž našel mobil, klíče bohužel ne, ale zeptej se na mobil hospodského.\n" +
+                        "[Ja]: Super, díky. Tak se mějte.\n",
+                "[Servirka]: Ano? Ještě něco?\n" +
+                "[Já]: Nene\n",
+                "hodinky",
+                "<NIC>");
         hospodaHlavniMistnost.vlozPostavu(servirka);
 
+        // === Naplnění místnosti - Hospoda kuchyň ===
 
-        hospodaKuchyn.vlozVec(new Vec("sporák", false, "Au."));
-        hospodaKuchyn.vlozVec(new Vec("nůž", true, "Assissin's Creed Mode Activated!"));
-        hospodaKuchyn.vlozVec(new Vec("špagety", true, "Dobrota."));
-        hospodaKuchyn.vlozVec(new Vec("obracečka", true, "K čemu je asi tato věc?"));
-        PostavaHospodsky kuchar = new PostavaHospodsky("servírka", false, false,
-                "Co chceš?\n", "xx", "parek", "mobil");
-        hospodaHlavniMistnost.vlozPostavu(kuchar);
+        hospodaKuchyn.vlozVec(new Vec("sporák", false, "Au.", false));
+        hospodaKuchyn.vlozVec(new Vec("špagety", true,
+                "Voní suprově, snad tak budou i chutnat. Už jsem nějaký jídlo potřeboval. Teď to stačí jen zkonzumovat."
+                , true));
+        hospodaKuchyn.vyberVec("špagety").setBodyVydrze(6);
+        hospodaKuchyn.vlozVec(new Vec("nůž", true, "To vypadá pěkně nebezpečně.", false));
+        hospodaKuchyn.vlozVec(new Vec("obracečka", true, "K čemu je asi tato věc?", false));
+        PostavaKuchar kuchar = new PostavaKuchar("kuchař", false, false,
+                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.", "paprika", "<NIC>");
+        hospodaKuchyn.vlozPostavu(kuchar);
+
 
 
 

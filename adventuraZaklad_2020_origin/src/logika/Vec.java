@@ -7,14 +7,17 @@ package logika;
  */
 public class Vec {
     private String nazev;
-    private Boolean prenositelna;
+    private boolean prenositelna;
     private String popis;
     private int cena = 0;
+    private boolean lzeKonzumovat;
+    private int bodyVydrze = 0;
 
-    public Vec(String nazev, Boolean prenositelna, String popis) {
+    public Vec(String nazev, boolean prenositelna, String popis, boolean lzeKonzumovat) {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelna = prenositelna;
+        this.lzeKonzumovat = lzeKonzumovat;
     }
 
     /**
@@ -56,4 +59,23 @@ public class Vec {
     public int getCena() {
         return cena;
     }
+
+    /**
+     * nastavi body výdrže
+     * @param bodyVydrze - vydrz, ktera se nastavi na vec
+     */
+    public void setBodyVydrze(int bodyVydrze) {
+        bodyVydrze = bodyVydrze;
+    }
+
+    /**
+     * vrati body výdrže konkrétní věci
+     * @return body výdrže po konzumaci
+     */
+    public int getBodyVydrze() {
+        return bodyVydrze;
+    }
+
+
+
 }
