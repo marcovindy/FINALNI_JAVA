@@ -17,9 +17,8 @@ import java.util.Set;
 public class HerniPlan {
 
     private Prostor aktualniProstor;
-    private Set<Postava> postavy;
     private Batoh batoh;
-    public int vydrz;
+    private int vydrz;
     
      /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -28,9 +27,6 @@ public class HerniPlan {
     public HerniPlan() {
         zalozProstoryHry();
         batoh = new Batoh(10, 0);
-        postavy = new HashSet<>();
-        vydrz = 11;
-
     }
     /**
      *  Vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -39,12 +35,21 @@ public class HerniPlan {
     private void zalozProstoryHry() {
         // === vytvářejí se jednotlivé prostory ===
         Prostor hospodaHlavniMistnost = new Prostor("hospoda_hlavní_místnost","Žižkovská hospoda plná ožralých lidí");
-        Prostor predKoleji = new Prostor("pred_koleji", "U vchodu před kolejí, pro tebe známé místo, kde na tebe pořád civí vrátný přes okno");
         Prostor zachodMuzi = new Prostor("záchod_muži","Staré poblité záchody s hnědými věcmi na stěnách a stropu");
         Prostor zachodZeny = new Prostor("záchod_ženy","Né tak moc zapáchající záchody plné červenobílých kusů papíru okolo");
         Prostor hospodaKuchyn = new Prostor("hospoda_kuchyn","Zaplivaná kuchyň, kde pobíhají šváby a krysy");
-        Prostor predHospodou = new Prostor("pred_hospodou","Ulice před hospodou, kde slyšíš policejní sirény a \"zpěv\" opilců");
-        
+        Prostor predHospodou = new Prostor("před_hospodou","Ulice před hospodou, kde slyšíš policejní sirény a \"zpěv\" opilců");
+        Prostor uliceZizkovska = new Prostor("ulice_žizkovská","Ulice Žižkovská, zaplivaná ulice, kterou docela znáš.");
+        Prostor uliceVinohradska = new Prostor("ulice_vinohradská","Ulice před hospodou, kde slyšíš policejní sirény a \"zpěv\" opilců");
+        Prostor uliceKonevova = new Prostor("ulice_koněvova","Ulice Koněvova, dlouhá ulice plná temných zákoutí.");
+        Prostor obchod = new Prostor("obchod","Tady bych si něco mohl koupit.");
+        Prostor ulicePodLipami = new Prostor("ulice_pod_lipami","Ulice Pod Lipami, tady už to znáš moc dobře, jsi blízko!");
+        Prostor smradlavaUlicka = new Prostor("smradlavá_ulička","");
+        Prostor kanal = new Prostor("kanál","");
+        Prostor predKoleji = new Prostor("před_kolejí","Před kolejí, už vidíš vrátnici, ale nikdo tam není. Snad se konečně dostaneš dovnitř.");
+        Prostor uliceSpojovaci = new Prostor("ulice_spojovací","");
+
+
         // === přiřazují se průchody mezi prostory (sousedící prostory) ===
         hospodaHlavniMistnost.setVychod(zachodMuzi);
         hospodaHlavniMistnost.setVychod(zachodZeny);
@@ -56,6 +61,23 @@ public class HerniPlan {
         hospodaKuchyn.setVychod(hospodaHlavniMistnost);
 
         predHospodou.setVychod(hospodaHlavniMistnost);
+        predHospodou.setVychod(uliceZizkovska);
+        predHospodou.setVychod(uliceVinohradska);
+
+        uliceZizkovska.setVychod(predHospodou);
+        uliceZizkovska.setVychod(uliceKonevova);
+        uliceZizkovska.setVychod(obchod);
+
+//        uliceVinohradska.setVychod(predHospodou);
+
+        uliceKonevova.setVychod(uliceZizkovska);
+        uliceKonevova.setVychod(ulicePodLipami);
+        uliceKonevova.setVychod(smradlavaUlicka);
+        uliceKonevova.setVychod(kanal);
+
+        ulicePodLipami.setVychod(predKoleji);
+        ulicePodLipami.setVychod(uliceKonevova);
+        ulicePodLipami.setVychod(uliceSpojovaci);
                 
         aktualniProstor = zachodMuzi;  // hra začíná na pánských záchodech
 
@@ -64,6 +86,9 @@ public class HerniPlan {
         zachodMuzi.vlozVec(new Vec("hadr", true, "Sakra ušpiněný hadr.", false));
         zachodMuzi.vlozVec(new Vec("hnědá_hmota", true, "Fůj, co to je za strašnou věc, roztéká se po ruce.", false));
         zachodMuzi.vlozVec(new Vec("záchod", false, "Sem se koná poptřeba.", false));
+        PostavaCurajiciTypek curajiciTypek = new PostavaCurajiciTypek("čůrající_týpek", false, false,
+                "[Čůrající týpek]: Nech mě bejt!\n", "[Čůrající týpek]: Chčiju ty vole, né? Kam to čumíš!", "<NIC>", "<NIC>");
+        zachodMuzi.vlozPostavu(curajiciTypek);
 
         // === Naplnění místnosti - Záchod ženy ===
 
@@ -117,19 +142,30 @@ public class HerniPlan {
         // === Naplnění místnosti - Hospoda kuchyň ===
 
         hospodaKuchyn.vlozVec(new Vec("sporák", false, "Au.", false));
-        hospodaKuchyn.vlozVec(new Vec("špagety", true,
+        Vec spagety = new Vec("špagety", true,
                 "Voní suprově, snad tak budou i chutnat. Už jsem nějaký jídlo potřeboval. Teď to stačí jen zkonzumovat."
-                , true));
-        hospodaKuchyn.vyberVec("špagety").setBodyVydrze(6);
+                , true);
+        hospodaKuchyn.vlozVec(spagety);
+        System.out.println(hospodaKuchyn.vyberVec("špagety").getBodyVydrze());
         hospodaKuchyn.vlozVec(new Vec("nůž", true, "To vypadá pěkně nebezpečně.", false));
         hospodaKuchyn.vlozVec(new Vec("obracečka", true, "K čemu je asi tato věc?", false));
         PostavaKuchar kuchar = new PostavaKuchar("kuchař", false, false,
                 "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.", "paprika", "<NIC>");
         hospodaKuchyn.vlozPostavu(kuchar);
 
+        // === Naplnění místnosti - Před hospodou ===
+
+        predHospodou.vlozVec(new Vec("bota", true, "Nějaká pochozená bota.", false));
+        PostavaBandaOpilcu bandaOpilcu = new PostavaBandaOpilcu("banda_opilců", false, false,
+                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.", "pivo", "<NIC>");
+        predHospodou.vlozPostavu(bandaOpilcu);
+        PostavaBezdomovec bezdomovec = new PostavaBezdomovec("bezdomovec", false, false,
+                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.", "hodinky", "<NIC>");
+        predHospodou.vlozPostavu(kuchar);
 
 
 
+        setVydrz(11);
 
     }
     
@@ -157,8 +193,11 @@ public class HerniPlan {
        aktualniProstor = prostor;
     }
 
-    public Set<Postava> getPostavy() {
-        return postavy;
+    public int getVydrz() {
+        return vydrz;
     }
 
+    public void setVydrz(int vydrz) {
+        this.vydrz = vydrz;
+    }
 }

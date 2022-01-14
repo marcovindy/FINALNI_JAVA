@@ -32,6 +32,7 @@ public class Hra implements IHra {
         platnePrikazy.vlozPrikaz(new PrikazVyhod(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazMluv(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazDej(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazKonzumuj(herniPlan));
     }
 
     /**
@@ -45,7 +46,7 @@ public class Hra implements IHra {
                "Cítíš, že je čas se dostat k sobě na kolej a vyspat se, ať zvládneš zítra test ze statistiky.\n" +
                "A však nemůžeš najít svůj mobil, peněženku a klíče! Sakra!\n" +
                 "\n"+
-               herniPlan.getAktualniProstor().dlouhyPopis(herniPlan.vydrz);
+               herniPlan.getAktualniProstor().dlouhyPopis(herniPlan.getVydrz());
     }
     
     /**

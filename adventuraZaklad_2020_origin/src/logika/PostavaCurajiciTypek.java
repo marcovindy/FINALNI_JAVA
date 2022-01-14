@@ -1,8 +1,8 @@
 package logika;
 
-public class PostavaHolkaZeZachodu extends Postava {
+public class PostavaCurajiciTypek extends Postava {
 
-    public PostavaHolkaZeZachodu( String jmeno,
+    public PostavaCurajiciTypek( String jmeno,
                                   boolean probehlDulezityRozhovor,
                                   boolean dostalaSvouVec,
                                   String hlavniRec,

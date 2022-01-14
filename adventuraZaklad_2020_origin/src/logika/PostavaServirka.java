@@ -10,4 +10,6 @@ public class PostavaServirka extends Postava {
                           String vecKterouNabidne ) {
         super(jmeno, probehlDulezityRozhovor, dostalaSvouVec, hlavniRec, dalsiRec, vecKterouPotrebuje, vecKterouNabidne);
     }
+
 }
+

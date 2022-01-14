@@ -9,9 +9,9 @@ public class Vec {
     private String nazev;
     private boolean prenositelna;
     private String popis;
-    private int cena = 0;
+    private int cena;
     private boolean lzeKonzumovat;
-    private int bodyVydrze = 0;
+    private int bodyVydrze;
 
     public Vec(String nazev, boolean prenositelna, String popis, boolean lzeKonzumovat) {
         this.nazev = nazev;
@@ -34,6 +34,14 @@ public class Vec {
      */
     public String getPopis() {
         return popis;
+    }
+
+    /**
+     * vrati, zda lze predmet sebrat
+     * @return true pokud lze sebrat, false pokud nelze sebrat
+     */
+    public Boolean getLzeKonzumovat() {
+        return lzeKonzumovat;
     }
 
     /**
