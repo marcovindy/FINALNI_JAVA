@@ -83,6 +83,7 @@ public class HerniPlan {
         uliceZizkovska.setVychod(obchod);
 
         obchod.setVychod(uliceZizkovska);
+
         obchod.setVychod(sklad);
 
         sklad.setVychod(obchod);
@@ -129,10 +130,12 @@ public class HerniPlan {
 
         PostavaHolkaZeZachodu holkaZeZachodu = new PostavaHolkaZeZachodu("holka_ze_záchodů",
                 false, false,
-                "[Holka ze záchodů]: Blééééé.! #$%^@ Grk. Ueeee!\n" +
-                        "[Ja]: No teda... A pak že já vypadám, že mám dost.\n" +
-                        "[Holka ze záchodů]: Co tady děláš. Nech mě být, odejdi.\n" +
-                        "[Ja]: Myslím, že potřebuješ trochu vody, počkej.\n",
+                """
+                        [Holka ze záchodů]: Blééééé.! #$%^@ Grk. Ueeee!
+                        [Ja]: No teda... A pak že já vypadám, že mám dost.
+                        [Holka ze záchodů]: Co tady děláš. Nech mě být, odejdi.
+                        [Ja]: Myslím, že potřebuješ trochu vody, počkej.
+                        """,
                 "[Hospodský]: Teď nemám čas\n",
                 "voda",
                 "<NIC>");
@@ -149,10 +152,12 @@ public class HerniPlan {
         hospodaHlavniMistnost.vlozVec(new Vec("podtácek", true, "Pěkně mokrej podtácek.", false));
 
         PostavaHospodsky hospodsky = new PostavaHospodsky("hospodský", false, false,
-                "[Hospodský]: No ty ale vypadáš! Měl bys jít domů, tady spát nemůžeš.\n" +
-                        "[Já]: Hned půjdu, akorát si nemůžu vzpomenout, kde mám své věci....\n" +
-                        "[Hospodský]: Podívej se na záchody, tam jsi strávil pomalu celej večer.\n" +
-                        "[Já]: Hmm dík.\n",
+                """
+                        [Hospodský]: No ty ale vypadáš! Měl bys jít domů, tady spát nemůžeš.
+                        [Já]: Hned půjdu, akorát si nemůžu vzpomenout, kde mám své věci....
+                        [Hospodský]: Podívej se na záchody, tam jsi strávil pomalu celej večer.
+                        [Já]: Hmm dík.
+                        """,
                 "[Hospodský]: Teď nemám čas\n",
                 "parek",
                 "mobil");
@@ -163,13 +168,17 @@ public class HerniPlan {
         hospodaHlavniMistnost.vlozPostavu(opilec);
 
         PostavaServirka servirka = new PostavaServirka("servírka", false, false,
-                "[Ja]: Můžu zaplatit?\n" +
-                        "[Servirka]: V pořádku už to udělali kamarádi s kterýma jsi tu byl\n" +
-                        "[Ja]: Aah super a neviděla jste tu mobil a klíče, nějak jsem je vytratil.\n" +
-                        "[Servirka]: Nějaký muž našel mobil, klíče bohužel ne, ale zeptej se na mobil hospodského.\n" +
-                        "[Ja]: Super, díky. Tak se mějte.\n",
-                "[Servirka]: Ano? Ještě něco?\n" +
-                        "[Já]: Nene\n",
+                """
+                        [Ja]: Můžu zaplatit?
+                        [Servirka]: V pořádku už to udělali kamarádi s kterýma jsi tu byl
+                        [Ja]: Aah super a neviděla jste tu mobil a klíče, nějak jsem je vytratil.
+                        [Servirka]: Nějaký muž našel mobil, klíče bohužel ne, ale zeptej se na mobil hospodského.
+                        [Ja]: Super, díky. Tak se mějte.
+                        """,
+                """
+                        [Servirka]: Ano? Ještě něco?
+                        [Já]: Nene
+                        """,
                 "hodinky",
                 "<NIC>");
         hospodaHlavniMistnost.vlozPostavu(servirka);
@@ -198,7 +207,7 @@ public class HerniPlan {
 
         PostavaBezdomovec bezdomovec = new PostavaBezdomovec("bezdomovec", false, false,
                 "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "hodinky", "<NIC>");
-        predHospodou.vlozPostavu(kuchar);
+        predHospodou.vlozPostavu(bezdomovec);
 
         // === Nastavení počátční výdrže ===
 
@@ -222,23 +231,26 @@ public class HerniPlan {
                         || (nazevAktualnihoProstoru.equals("záchod_muži"))
                         || (nazevAktualnihoProstoru.equals("záchod_ženy"))
                         || (nazevAktualnihoProstoru.equals("hospoda_kuchyň"))) {
-                    ukoncitHru("Bohužel jsi se úplně vyčerpal a usnul v hospodě.\n"
-                            + "V hospodě tě zamknuli a ráno nikdo nepřichází.\n"
-                            + "Kvůli tomu jsi nestihl přijít na zkoušku.\n"
-                            + "Prohra!");
+                    ukoncitHru("""
+                            Bohužel jsi se úplně vyčerpal a usnul v hospodě.
+                            V hospodě tě zamknuli a ráno nikdo nepřichází.
+                            Kvůli tomu jsi nestihl přijít na zkoušku.
+                            Prohra!""");
                 } else {
-                    ukoncitHru("Bohužel jsi se úplně vyčerpal a usnul mimo postel.\n"
-                            + "Když jsi spal, tak tě někdo přepadl a ukradl ti všechno oblečení\n"
-                            + "Nahej jít na zkoušku nemůžeš a tak jsi ji nestihl.\n"
-                            + "Prohra!");
+                    ukoncitHru("""
+                            Bohužel jsi se úplně vyčerpal a usnul mimo postel.
+                            Když jsi spal, tak tě někdo přepadl a ukradl ti všechno oblečení
+                            Nahej jít na zkoušku nemůžeš a tak jsi ji nestihl.
+                            Prohra!""");
                 }
             }
         } else if (operace == 2) {
             if (getVydrz() <= 0) {
-                ukoncitHru("Bohužel jsi snědl něco co jsi neměl a usnul mimo postel.\n"
-                        + "Když jsi spal, tak tě někdo přepadl a ukradl ti všechno oblečení\n"
-                        + "Nahej jít na zkoušku nemůžeš a tak jsi ji nestihl.\n"
-                        + "Prohra!");
+                ukoncitHru("""
+                        Bohužel jsi snědl něco co jsi neměl a usnul mimo postel.
+                        Když jsi spal, tak tě někdo přepadl a ukradl ti všechno oblečení
+                        Nahej jít na zkoušku nemůžeš a tak jsi ji nestihl.
+                        Prohra!""");
             }
         }
 
