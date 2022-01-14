@@ -10,21 +10,40 @@ package logika;
 
 public class PostavaHospodsky extends Postava {
 
+    private Batoh batoh;
+    private Postava servirka;
+    public boolean dostalVec = false;
+
     public PostavaHospodsky(String jmeno,
                             boolean probehlDulezityRozhovor,
                             boolean dostalaSvouVec,
                             String hlavniRec,
                             String dalsiRec,
                             String vecKterouPotrebuje,
-                            Vec vecKterouNabidne) {
+                            Vec vecKterouNabidne,
+                            Batoh batoh,
+                            PostavaServirka servirka) {
         super(jmeno, probehlDulezityRozhovor, dostalaSvouVec, hlavniRec, dalsiRec, vecKterouPotrebuje, vecKterouNabidne);
+        this.batoh = batoh;
+        this.servirka = servirka;
     }
 
     @Override
-    public boolean dej(Vec vec) {
-
-
-
-        return super.dej(vec);
+    public String mluv() {
+        if(servirka.isProbehlDulezityRozhovor()){
+            if(batoh.vlezeSeDoBatohu() && !(dostalVec) && servirka.isProbehlDulezityRozhovor()){
+                dostalVec = true;
+                batoh.vlozVec(getVecKterouNabidne());
+                return """
+                    [Ja]: Zdravím, nenašel se tu náhodou mobil?
+                    [Hospodsky]: Jaký byl?
+                    [Ja]: Modrý značka Wakasaki, průhledné pouzdro.
+                    [Hospodsky]: Tak ten tu čirou náhodou mám.
+                    *Hospodsky předává telefon*
+                    [Ja]: Děkuju, naschle.
+                    """;
+            }
+        }
+        return super.mluv();
     }
 }

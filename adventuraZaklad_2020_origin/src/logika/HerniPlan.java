@@ -28,8 +28,8 @@ public class HerniPlan {
      */
 
     public HerniPlan(Hra hra) {
-        zalozProstoryHry();
         batoh = new Batoh(10, 0);
+        zalozProstoryHry();
         this.hra = hra;
     }
 
@@ -152,22 +152,6 @@ public class HerniPlan {
         hospodaHlavniMistnost.vlozVec(new Vec("židle", false, "Na tomto se sedí.", false));
         hospodaHlavniMistnost.vlozVec(new Vec("podtácek", true, "Pěkně mokrej podtácek.", false));
 
-        PostavaHospodsky hospodsky = new PostavaHospodsky("hospodský", false, false,
-                """
-                        [Hospodský]: No ty ale vypadáš! Měl bys jít domů, tady spát nemůžeš.
-                        [Já]: Hned půjdu, akorát si nemůžu vzpomenout, kde mám své věci....
-                        [Hospodský]: Podívej se na záchody, tam jsi strávil pomalu celej večer.
-                        [Já]: Hmm dík.
-                        """,
-                "[Hospodský]: Teď nemám čas\n",
-                "parek",
-                new Vec("mobil", true, "Hledaný mobil", false));
-        hospodaHlavniMistnost.vlozPostavu(hospodsky);
-
-        PostavaOpilec opilec = new PostavaOpilec("opilec", false, false,
-                "Co chceš?\n", "xx", "pivo", null);
-        hospodaHlavniMistnost.vlozPostavu(opilec);
-
         PostavaServirka servirka = new PostavaServirka("servírka", false, false,
                 """
                         [Ja]: Můžu zaplatit?
@@ -183,6 +167,24 @@ public class HerniPlan {
                 "hodinky",
                 null);
         hospodaHlavniMistnost.vlozPostavu(servirka);
+
+        PostavaHospodsky hospodsky = new PostavaHospodsky("hospodský", false, false,
+                """
+                        [Hospodský]: No ty ale vypadáš! Měl bys jít domů, tady spát nemůžeš.
+                        [Já]: Hned půjdu, akorát si nemůžu vzpomenout, kde mám své věci....
+                        [Hospodský]: Podívej se na záchody, tam jsi strávil pomalu celej večer.
+                        [Já]: Hmm dík.
+                        """,
+                "[Hospodský]: Teď nemám čas\n",
+                "parek",
+                new Vec("mobil", true, "Hledaný mobil", false), this.getBatoh(), servirka);
+        hospodaHlavniMistnost.vlozPostavu(hospodsky);
+
+        PostavaOpilec opilec = new PostavaOpilec("opilec", false, false,
+                "Co chceš?\n", "xx", "pivo", null);
+        hospodaHlavniMistnost.vlozPostavu(opilec);
+
+
 
         // === Naplnění místnosti - Hospoda kuchyň ===
 
