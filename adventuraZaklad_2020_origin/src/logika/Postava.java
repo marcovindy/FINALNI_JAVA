@@ -1,17 +1,15 @@
 package logika;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Class Postava - obecna trida pro vsechny postavy
+ *
  * @author Marek Vaníček
  * @version 1.0 pro školní rok 2021/2022
  */
 
-public class Postava implements IPostava {
+public class Postava implements IPostava{
 
-    private String jmeno;
+    private final String jmeno;
     private boolean probehlDulezityRozhovor;
     private boolean dostalaSvouVec;
     private String hlavniRec;
@@ -29,9 +27,9 @@ public class Postava implements IPostava {
         this.dostalaSvouVec = dostalaSvouVec;
     }
 
-    public String mluv(){
+    public String mluv() {
         String text = "\n";
-        if ( !(probehlDulezityRozhovor) ) {
+        if (!(probehlDulezityRozhovor)) {
             probehlDulezityRozhovor = true;
             text += hlavniRec;
         } else {
@@ -40,8 +38,8 @@ public class Postava implements IPostava {
         return text;
     }
 
-    public boolean dej(Vec vec){
-        if( vec.getNazev().equals(vecKterouPotrebuje) ) {
+    public boolean dej(Vec vec) {
+        if (vec.getNazev().equals(vecKterouPotrebuje)) {
             dostalaSvouVec = true;
             return true;
         }
@@ -58,10 +56,6 @@ public class Postava implements IPostava {
 
     public String getJmeno() {
         return jmeno;
-    }
-
-    public void setJmeno(String jmeno) {
-        this.jmeno = jmeno;
     }
 
     public boolean isProbehlDulezityRozhovor() {

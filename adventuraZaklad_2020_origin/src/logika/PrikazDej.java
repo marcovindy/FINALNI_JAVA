@@ -34,10 +34,10 @@ public class PrikazDej implements IPrikaz{
                 Postava postava = plan.getAktualniProstor().vratPostavu(pozadovanaPostava);
                 boolean povedloSe = postava.dej(vec);
                 if ( !(povedloSe) ){
-                    text = pozadovanaPostava + " nechce " + pozadovanaVec;
+                    text = pozadovanaPostava + " nechce předmet " + pozadovanaVec;
                 } else {
                     plan.getBatoh().vyhodVec(vec);
-                    text = pozadovanaVec + " předána postavě";
+                    text = pozadovanaVec + " předána postavě " + pozadovanaPostava;
                 }
             }
         }

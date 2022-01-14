@@ -29,7 +29,7 @@ public class PrikazBatoh implements IPrikaz {
      */
 
     public String provedPrikaz(String... parametry) {
-        return plan.getBatoh().dlouhyPopis();
+        return plan.getBatoh().vypisBatohu();
     }
 
     /**

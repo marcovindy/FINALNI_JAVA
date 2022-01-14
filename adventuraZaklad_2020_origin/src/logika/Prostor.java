@@ -193,7 +193,7 @@ public class Prostor {
     private String seznamVeci(){
         String seznam = "";
         for( Vec vec : veci ){
-            seznam = seznam + vec.getNazev() + " ";
+            seznam = seznam + vec.getNazev() + ", ";
         }
         return seznam;
     }
