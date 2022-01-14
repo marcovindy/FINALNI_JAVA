@@ -16,17 +16,21 @@ import java.util.Set;
  */
 public class HerniPlan {
 
+    private Hra hra;
     private Prostor aktualniProstor;
     private Batoh batoh;
     private int vydrz;
+
     
      /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
-     */
-    public HerniPlan() {
+      * @param hra
+      */
+    public HerniPlan(Hra hra) {
         zalozProstoryHry();
         batoh = new Batoh(10, 0);
+        this.hra = hra;
     }
     /**
      *  Vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -37,7 +41,7 @@ public class HerniPlan {
         Prostor hospodaHlavniMistnost = new Prostor("hospoda_hlavní_místnost","Žižkovská hospoda plná ožralých lidí");
         Prostor zachodMuzi = new Prostor("záchod_muži","Staré poblité záchody s hnědými věcmi na stěnách a stropu");
         Prostor zachodZeny = new Prostor("záchod_ženy","Né tak moc zapáchající záchody plné červenobílých kusů papíru okolo");
-        Prostor hospodaKuchyn = new Prostor("hospoda_kuchyn","Zaplivaná kuchyň, kde pobíhají šváby a krysy");
+        Prostor hospodaKuchyn = new Prostor("hospoda_kuchyň","Zaplivaná kuchyň, kde pobíhají šváby a krysy");
         Prostor predHospodou = new Prostor("před_hospodou","Ulice před hospodou, kde slyšíš policejní sirény a \"zpěv\" opilců");
         Prostor uliceZizkovska = new Prostor("ulice_žizkovská","Ulice Žižkovská, zaplivaná ulice, kterou docela znáš.");
         Prostor uliceVinohradska = new Prostor("ulice_vinohradská","Ulice před hospodou, kde slyšíš policejní sirény a \"zpěv\" opilců");
@@ -110,7 +114,7 @@ public class HerniPlan {
 
         hospodaHlavniMistnost.vlozVec(new Vec("voda", true, "Voda, proč ne.", true));
         hospodaHlavniMistnost.vlozVec(new Vec("pivo", true, "Pivo zdarma, to mám ale štěstí!", true));
-        hospodaHlavniMistnost.vyberVec("voda").setBodyVydrze(1);
+        hospodaHlavniMistnost.vyberVec("voda").setBodyVydrze(-100);
         hospodaHlavniMistnost.vyberVec("pivo").setBodyVydrze(3);
         hospodaHlavniMistnost.vlozVec(new Vec("stůl", false, "Velký stůl.", false));
         hospodaHlavniMistnost.vlozVec(new Vec("židle", false, "Na tomto se sedí.", false));
@@ -142,11 +146,10 @@ public class HerniPlan {
         // === Naplnění místnosti - Hospoda kuchyň ===
 
         hospodaKuchyn.vlozVec(new Vec("sporák", false, "Au.", false));
-        Vec spagety = new Vec("špagety", true,
+        hospodaKuchyn.vlozVec(new Vec("špagety", true,
                 "Voní suprově, snad tak budou i chutnat. Už jsem nějaký jídlo potřeboval. Teď to stačí jen zkonzumovat."
-                , true);
-        hospodaKuchyn.vlozVec(spagety);
-        System.out.println(hospodaKuchyn.vyberVec("špagety").getBodyVydrze());
+                , true));
+        hospodaHlavniMistnost.vyberVec("špagety").setBodyVydrze(7);
         hospodaKuchyn.vlozVec(new Vec("nůž", true, "To vypadá pěkně nebezpečně.", false));
         hospodaKuchyn.vlozVec(new Vec("obracečka", true, "K čemu je asi tato věc?", false));
         PostavaKuchar kuchar = new PostavaKuchar("kuchař", false, false,
@@ -167,7 +170,48 @@ public class HerniPlan {
 
         setVydrz(11);
 
+
+
+
     }
+
+    public void zkontrolujVydrz(int operace){
+        if(operace == 1) {
+            if (getVydrz() <= 0 ){
+                String nazevAktualnihoProstoru = getAktualniProstor().getNazev();
+
+                if ((nazevAktualnihoProstoru.equals("hospoda_hlavní_místnost"))
+                        || (nazevAktualnihoProstoru.equals("záchod_muži"))
+                        || (nazevAktualnihoProstoru.equals("záchod_ženy"))
+                        || (nazevAktualnihoProstoru.equals("hospoda_kuchyň"))) {
+                    ukoncitHru("Bohužel jsi se úplně vyčerpal a usnul v hospodě.\n"
+                            + "V hospodě tě zamknuli a ráno nikdo nepřichází.\n"
+                            + "Kvůli tomu jsi nestihl přijít na zkoušku.\n"
+                            + "Prohra!");
+                }else {
+                    ukoncitHru("Bohužel jsi se úplně vyčerpal a usnul mimo postel.\n"
+                            + "Když jsi spal, tak tě někdo přepadl a ukradl ti všechno oblečení\n"
+                            + "Nahej jít na zkoušku nemůžeš a tak jsi ji nestihl.\n"
+                            + "Prohra!");
+                }
+            }
+        } else if (operace == 2) {
+            if ( getVydrz() <= 0 ) {
+                ukoncitHru("Bohužel jsi snědl něco co jsi neměl a usnul mimo postel.\n"
+                        + "Když jsi spal, tak tě někdo přepadl a ukradl ti všechno oblečení\n"
+                        + "Nahej jít na zkoušku nemůžeš a tak jsi ji nestihl.\n"
+                        + "Prohra!");
+            }
+        }
+
+    }
+
+    public void ukoncitHru(String zaverecnyText) {
+        hra.setText(zaverecnyText);
+        hra.setKonecHry(true);
+    }
+
+
     
     /**
      *  Metoda vrací odkaz na aktuální prostor, ve ktetém se hráč právě nachází.

@@ -10,15 +10,16 @@ public class PrikazKonzumuj implements IPrikaz {
 
     private static final String NAZEV = "konzumuj";
     private HerniPlan plan;
+    private Hra hra;
 
     /**
      *  Konstruktor třídy
      *
      *  @param plan herní plán, ve kterém se bude ve hře "chodit"
      */
-    public PrikazKonzumuj(HerniPlan plan) {
+    public PrikazKonzumuj(HerniPlan plan, Hra hra) {
         this.plan = plan;
-
+        this.hra = hra;
     }
 
     /**
@@ -41,8 +42,14 @@ public class PrikazKonzumuj implements IPrikaz {
                 if ( pozadovanaVec.getLzeKonzumovat() ) {
 
                     plan.setVydrz(plan.getVydrz() + pozadovanaVec.getBodyVydrze());
-                    System.out.println(pozadovanaVec.getBodyVydrze() + " " + plan.getVydrz());
-                    text = "Mňam, tak to bylo sakra dobrý! Hned se cítím líp.\n" + "Výdrž: " + plan.getVydrz() ;
+                    if ( pozadovanaVec.getBodyVydrze() < 0 ) {
+                        text = "Bléééé, tak tohle mi fakt nepomohlo.\n" + "Výdrž: " + plan.getVydrz();
+                        plan.zkontrolujVydrz(2);
+                    } else if ( pozadovanaVec.getBodyVydrze() >= 4 ) {
+                        text = "Mňam, tak to bylo sakra dobrý! Hned se cítím líp.\n" + "Výdrž: " + plan.getVydrz() ;
+                    } else {
+                        text = "To mi moc nedalo *ach*.\n" + "Výdrž: " + plan.getVydrz() ;
+                    }
                 } else {
                     text = nazevVeci + " sníst nemůžeš";
                 }

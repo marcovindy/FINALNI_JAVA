@@ -57,7 +57,7 @@ public class Vec {
      * @param cena - cena, kterou vec bude mit
      */
     public void setCena(int cena) {
-        cena = cena;
+        this.cena = cena;
     }
 
     /**
@@ -73,7 +73,7 @@ public class Vec {
      * @param bodyVydrze - vydrz, ktera se nastavi na vec
      */
     public void setBodyVydrze(int bodyVydrze) {
-        bodyVydrze = bodyVydrze;
+        this.bodyVydrze = bodyVydrze;
     }
 
     /**

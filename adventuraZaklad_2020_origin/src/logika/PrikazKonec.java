@@ -12,7 +12,6 @@ package logika;
 public class PrikazKonec implements IPrikaz {
 
     private static final String NAZEV = "konec";
-
     private Hra hra;
 
     /**
@@ -38,7 +37,7 @@ public class PrikazKonec implements IPrikaz {
         }
         else {
             hra.setKonecHry(true);
-            return "hra ukončena příkazem konec";
+            return "Hra ukončena příkazem konec";
         }
     }
 
