@@ -119,7 +119,8 @@ public class HerniPlan {
         zachodMuzi.vlozVec(new Vec("záchod", false, "Sem se koná poptřeba.", false));
 
         PostavaCurajiciTypek curajiciTypek = new PostavaCurajiciTypek("čůrající_týpek", false, false,
-                "[Čůrající týpek]: Nech mě bejt!\n", "[Čůrající týpek]: Chčiju ty vole, né? Kam to čumíš!\n", "<NIC>", "<NIC>");
+                "[Čůrající týpek]: Nech mě bejt!\n", "[Čůrající týpek]: Chčiju ty vole, né? Kam to čumíš!\n",
+                "<NIC>", null);
         zachodMuzi.vlozPostavu(curajiciTypek);
 
         // === Naplnění místnosti - Záchod ženy ===
@@ -138,7 +139,7 @@ public class HerniPlan {
                         """,
                 "[Hospodský]: Teď nemám čas\n",
                 "voda",
-                "<NIC>");
+                new Vec("ISIC", true, "VŠE ISIC", false));
         zachodZeny.vlozPostavu(holkaZeZachodu);
 
         // === Naplnění místnosti - Hospoda hlavní místnost ===
@@ -160,11 +161,11 @@ public class HerniPlan {
                         """,
                 "[Hospodský]: Teď nemám čas\n",
                 "parek",
-                "mobil");
+                new Vec("mobil", true, "Hledaný mobil", false));
         hospodaHlavniMistnost.vlozPostavu(hospodsky);
 
         PostavaOpilec opilec = new PostavaOpilec("opilec", false, false,
-                "Co chceš?\n", "xx", "pivo", "<NIC>");
+                "Co chceš?\n", "xx", "pivo", null);
         hospodaHlavniMistnost.vlozPostavu(opilec);
 
         PostavaServirka servirka = new PostavaServirka("servírka", false, false,
@@ -180,7 +181,7 @@ public class HerniPlan {
                         [Já]: Nene
                         """,
                 "hodinky",
-                "<NIC>");
+                null);
         hospodaHlavniMistnost.vlozPostavu(servirka);
 
         // === Naplnění místnosti - Hospoda kuchyň ===
@@ -194,7 +195,7 @@ public class HerniPlan {
         hospodaKuchyn.vlozVec(new Vec("obracečka", true, "K čemu je asi tato věc?", false));
 
         PostavaKuchar kuchar = new PostavaKuchar("kuchař", false, false,
-                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "paprika", "<NIC>");
+                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "paprika", null);
         hospodaKuchyn.vlozPostavu(kuchar);
 
         // === Naplnění místnosti - Před hospodou ===
@@ -202,11 +203,11 @@ public class HerniPlan {
         predHospodou.vlozVec(new Vec("bota", true, "Nějaká pochozená bota.", false));
 
         PostavaBandaOpilcu bandaOpilcu = new PostavaBandaOpilcu("banda_opilců", false, false,
-                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "pivo", "<NIC>");
+                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "pivo", null);
         predHospodou.vlozPostavu(bandaOpilcu);
 
         PostavaBezdomovec bezdomovec = new PostavaBezdomovec("bezdomovec", false, false,
-                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "hodinky", "<NIC>");
+                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "hodinky", null);
         predHospodou.vlozPostavu(bezdomovec);
 
         // === Nastavení počátční výdrže ===

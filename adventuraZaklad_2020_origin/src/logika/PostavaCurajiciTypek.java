@@ -15,7 +15,7 @@ public class PostavaCurajiciTypek extends Postava {
                                 String hlavniRec,
                                 String dalsiRec,
                                 String vecKterouPotrebuje,
-                                String vecKterouNabidne) {
+                                Vec vecKterouNabidne) {
         super(jmeno, probehlDulezityRozhovor, dostalaSvouVec, hlavniRec, dalsiRec, vecKterouPotrebuje, vecKterouNabidne);
     }
 

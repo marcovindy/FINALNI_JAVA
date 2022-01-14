@@ -9,13 +9,15 @@ package logika;
 
 public class PostavaHolkaZeZachodu extends Postava {
 
+    private HerniPlan plan;
+
     public PostavaHolkaZeZachodu(String jmeno,
                                  boolean probehlDulezityRozhovor,
                                  boolean dostalaSvouVec,
                                  String hlavniRec,
                                  String dalsiRec,
                                  String vecKterouPotrebuje,
-                                 String vecKterouNabidne) {
+                                 Vec vecKterouNabidne) {
         super(jmeno, probehlDulezityRozhovor, dostalaSvouVec, hlavniRec, dalsiRec, vecKterouPotrebuje, vecKterouNabidne);
     }
 

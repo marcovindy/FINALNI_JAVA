@@ -15,13 +15,13 @@ public class Postava implements IPostava{
     private String hlavniRec;
     private String dalsiRec;
     private String vecKterouPotrebuje;
-    private String vecKterouNabidne;
+    private Vec vecKterouNabidne;
 
     /**
      * Konsktruktor třídy Postava
      */
 
-    public Postava(String jmeno, boolean probehlDulezityRozhovor, boolean dostalaSvouVec, String hlavniRec, String dalsiRec, String vecKterouPotrebuje, String vecKterouNabidne) {
+    public Postava(String jmeno, boolean probehlDulezityRozhovor, boolean dostalaSvouVec, String hlavniRec, String dalsiRec, String vecKterouPotrebuje, Vec vecKterouNabidne) {
         this.jmeno = jmeno;
         this.probehlDulezityRozhovor = probehlDulezityRozhovor;
         this.hlavniRec = hlavniRec;
@@ -109,11 +109,11 @@ public class Postava implements IPostava{
         this.vecKterouPotrebuje = vecKterouPotrebuje;
     }
 
-    public String getVecKterouNabidne() {
+    public Vec getVecKterouNabidne() {
         return vecKterouNabidne;
     }
 
-    public void setVecKterouNabidne(String vecKterouNabidne) {
+    public void setVecKterouNabidne(Vec vecKterouNabidne) {
         this.vecKterouNabidne = vecKterouNabidne;
     }
 
