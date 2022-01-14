@@ -24,7 +24,7 @@ public class HerniPlan {
     /**
      * Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *
-     * @param hra
+     * @param hra logika hry
      */
 
     public HerniPlan(Hra hra) {
@@ -54,10 +54,14 @@ public class HerniPlan {
         Prostor uliceKonevova = new Prostor("ulice_koněvova", "Ulice Koněvova, dlouhá ulice plná temných zákoutí.");
         Prostor obchod = new Prostor("obchod", "Tady bych si něco mohl koupit.");
         Prostor ulicePodLipami = new Prostor("ulice_pod_lipami", "Ulice Pod Lipami, tady už to znáš moc dobře, jsi blízko!");
-        Prostor smradlavaUlicka = new Prostor("smradlavá_ulička", "");
-        Prostor kanal = new Prostor("kanál", "");
+        Prostor smradlavaUlicka = new Prostor("smradlavá_ulička", "Ulička s pochybným individuem.");
+        Prostor kanal = new Prostor("kanál", "Temnota, proč by sem někdo chodil?");
         Prostor predKoleji = new Prostor("před_kolejí", "Před kolejí, už vidíš vrátnici, ale nikdo tam není. Snad se konečně dostaneš dovnitř.");
-        Prostor uliceSpojovaci = new Prostor("ulice_spojovací", "");
+        Prostor uliceSpojovaci = new Prostor("ulice_spojovací", "Konečná, odsud už dál asi nepůjdeš.");
+        Prostor sklad = new Prostor("sklad", "Hmmm, sklad obchodu.");
+        Prostor kino = new Prostor("kino", "");
+        Prostor hrbitov = new Prostor("hrbitov", "");
+
 
         // === přiřazují se průchody mezi prostory (sousedící prostory) ===
 
@@ -78,16 +82,30 @@ public class HerniPlan {
         uliceZizkovska.setVychod(uliceKonevova);
         uliceZizkovska.setVychod(obchod);
 
-//        uliceVinohradska.setVychod(predHospodou);
+        obchod.setVychod(uliceZizkovska);
+        obchod.setVychod(sklad);
+
+        sklad.setVychod(obchod);
+
+        uliceVinohradska.setVychod(predHospodou);
+        uliceVinohradska.setVychod(kino);
+        uliceVinohradska.setVychod(hrbitov);
 
         uliceKonevova.setVychod(uliceZizkovska);
         uliceKonevova.setVychod(ulicePodLipami);
         uliceKonevova.setVychod(smradlavaUlicka);
         uliceKonevova.setVychod(kanal);
 
+        smradlavaUlicka.setVychod(uliceKonevova);
+
+        kanal.setVychod(uliceKonevova);
+
         ulicePodLipami.setVychod(predKoleji);
         ulicePodLipami.setVychod(uliceKonevova);
         ulicePodLipami.setVychod(uliceSpojovaci);
+
+        uliceSpojovaci.setVychod(ulicePodLipami);
+
 
         // === Nastavení začátku na záchody_muži ===
 
@@ -98,6 +116,7 @@ public class HerniPlan {
         zachodMuzi.vlozVec(new Vec("hadr", true, "Sakra ušpiněný hadr.", false));
         zachodMuzi.vlozVec(new Vec("hnědá_hmota", true, "Fůj, co to je za strašnou věc, roztéká se po ruce.", false));
         zachodMuzi.vlozVec(new Vec("záchod", false, "Sem se koná poptřeba.", false));
+
         PostavaCurajiciTypek curajiciTypek = new PostavaCurajiciTypek("čůrající_týpek", false, false,
                 "[Čůrající týpek]: Nech mě bejt!\n", "[Čůrající týpek]: Chčiju ty vole, né? Kam to čumíš!\n", "<NIC>", "<NIC>");
         zachodMuzi.vlozPostavu(curajiciTypek);
@@ -107,6 +126,7 @@ public class HerniPlan {
         zachodZeny.vlozVec(new Vec("hodinky", true, "Kdo to tu asi nechal? Uvidíme.", false));
         zachodZeny.vlozVec(new Vec("záchod", false, "Sem se koná poptřeba.", false));
         zachodZeny.vlozVec(new Vec("peněženka", true, "Tu jsem hledal!", false));
+
         PostavaHolkaZeZachodu holkaZeZachodu = new PostavaHolkaZeZachodu("holka_ze_záchodů",
                 false, false,
                 "[Holka ze záchodů]: Blééééé.! #$%^@ Grk. Ueeee!\n" +
@@ -127,6 +147,7 @@ public class HerniPlan {
         hospodaHlavniMistnost.vlozVec(new Vec("stůl", false, "Velký stůl.", false));
         hospodaHlavniMistnost.vlozVec(new Vec("židle", false, "Na tomto se sedí.", false));
         hospodaHlavniMistnost.vlozVec(new Vec("podtácek", true, "Pěkně mokrej podtácek.", false));
+
         PostavaHospodsky hospodsky = new PostavaHospodsky("hospodský", false, false,
                 "[Hospodský]: No ty ale vypadáš! Měl bys jít domů, tady spát nemůžeš.\n" +
                         "[Já]: Hned půjdu, akorát si nemůžu vzpomenout, kde mám své věci....\n" +
@@ -136,9 +157,11 @@ public class HerniPlan {
                 "parek",
                 "mobil");
         hospodaHlavniMistnost.vlozPostavu(hospodsky);
+
         PostavaOpilec opilec = new PostavaOpilec("opilec", false, false,
                 "Co chceš?\n", "xx", "pivo", "<NIC>");
         hospodaHlavniMistnost.vlozPostavu(opilec);
+
         PostavaServirka servirka = new PostavaServirka("servírka", false, false,
                 "[Ja]: Můžu zaplatit?\n" +
                         "[Servirka]: V pořádku už to udělali kamarádi s kterýma jsi tu byl\n" +
@@ -160,6 +183,7 @@ public class HerniPlan {
         hospodaHlavniMistnost.vyberVec("špagety").setBodyVydrze(7);
         hospodaKuchyn.vlozVec(new Vec("nůž", true, "To vypadá pěkně nebezpečně.", false));
         hospodaKuchyn.vlozVec(new Vec("obracečka", true, "K čemu je asi tato věc?", false));
+
         PostavaKuchar kuchar = new PostavaKuchar("kuchař", false, false,
                 "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "paprika", "<NIC>");
         hospodaKuchyn.vlozPostavu(kuchar);
@@ -167,9 +191,11 @@ public class HerniPlan {
         // === Naplnění místnosti - Před hospodou ===
 
         predHospodou.vlozVec(new Vec("bota", true, "Nějaká pochozená bota.", false));
+
         PostavaBandaOpilcu bandaOpilcu = new PostavaBandaOpilcu("banda_opilců", false, false,
                 "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "pivo", "<NIC>");
         predHospodou.vlozPostavu(bandaOpilcu);
+
         PostavaBezdomovec bezdomovec = new PostavaBezdomovec("bezdomovec", false, false,
                 "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "hodinky", "<NIC>");
         predHospodou.vlozPostavu(kuchar);
