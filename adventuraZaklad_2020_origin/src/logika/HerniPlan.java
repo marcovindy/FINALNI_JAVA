@@ -146,7 +146,7 @@ public class HerniPlan {
 
         hospodaHlavniMistnost.vlozVec(new Vec("voda", true, "Voda, proč ne.", true));
         hospodaHlavniMistnost.vlozVec(new Vec("pivo", true, "Pivo zdarma, to mám ale štěstí!", true));
-        hospodaHlavniMistnost.vyberVec("voda").setBodyVydrze(-100);
+        hospodaHlavniMistnost.vyberVec("voda").setBodyVydrze(1);
         hospodaHlavniMistnost.vyberVec("pivo").setBodyVydrze(3);
         hospodaHlavniMistnost.vlozVec(new Vec("stůl", false, "Velký stůl.", false));
         hospodaHlavniMistnost.vlozVec(new Vec("židle", false, "Na tomto se sedí.", false));
@@ -185,7 +185,6 @@ public class HerniPlan {
         hospodaHlavniMistnost.vlozPostavu(opilec);
 
 
-
         // === Naplnění místnosti - Hospoda kuchyň ===
 
         hospodaKuchyn.vlozVec(new Vec("sporák", false, "Au.", false));
@@ -211,6 +210,28 @@ public class HerniPlan {
         PostavaBezdomovec bezdomovec = new PostavaBezdomovec("bezdomovec", false, false,
                 "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "hodinky", null);
         predHospodou.vlozPostavu(bezdomovec);
+
+        // === Naplnění místnosti - Žižkovská ulice ===
+
+        uliceZizkovska.vlozVec(new Vec("lavička", false, "Dřevená lavička.", false));
+        uliceZizkovska.vlozVec(new Vec("popelnice", false, "Prostá popelnice.", false));
+        uliceZizkovska.vlozVec(new Vec("lampa", false, "Akorát tak svítí.", false));
+        uliceZizkovska.vlozVec(new Vec("nakouslá_bageta", false, "To nevypadá moc dobře.", true));
+        uliceZizkovska.vyberVec("nakouslá_bageta").setBodyVydrze(-3);
+
+        PostavaLeziciClovek leziciClovek = new PostavaLeziciClovek("ležící_člověk", false, false,
+                        """
+                        [Ja]: Petře to jsi ty?! Proč sakra ležíš na lavičce.
+                        [Petr]: Trochu jsem usnul...
+                        [Ja]: Zvládneš dojít domů?
+                        [Petr]: Jasný, jasný, nemáš něco na pití nebo na jídlo?
+                        [Ja]: Zrovna teď ne hele, každopádně zkus dojít domů
+                        [Petr]: Hele nechal sis u mě klíče, tady je máš.
+                        [Ja]: Super, ty jsem hledal!
+                        *Petr ti předává klíče*
+                        """,
+                        "[Kuchař]: *zzzZZZzz*\n", "jídlo", null);
+        uliceZizkovska.vlozPostavu(leziciClovek);
 
         // === Nastavení počátční výdrže ===
 

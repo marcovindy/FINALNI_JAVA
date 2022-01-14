@@ -19,5 +19,4 @@ public class PostavaBezdomovec extends Postava {
         super(jmeno, probehlDulezityRozhovor, dostalaSvouVec, hlavniRec, dalsiRec, vecKterouPotrebuje, vecKterouNabidne);
     }
 
-
 }
