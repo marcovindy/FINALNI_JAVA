@@ -1,7 +1,7 @@
 package logika;
 
 /**
- * Class Postava - obecna trida pro vsechny postavy
+ * Class Postava - obecna trida pro vsechny postavy, další postavy se extendují, zde je jejich basic logika
  *
  * @author Marek Vaníček
  * @version 1.0 pro školní rok 2021/2022
@@ -17,6 +17,10 @@ public class Postava implements IPostava{
     private String vecKterouPotrebuje;
     private String vecKterouNabidne;
 
+    /**
+     * Konsktruktor třídy Postava
+     */
+
     public Postava(String jmeno, boolean probehlDulezityRozhovor, boolean dostalaSvouVec, String hlavniRec, String dalsiRec, String vecKterouPotrebuje, String vecKterouNabidne) {
         this.jmeno = jmeno;
         this.probehlDulezityRozhovor = probehlDulezityRozhovor;
@@ -26,6 +30,13 @@ public class Postava implements IPostava{
         this.vecKterouNabidne = vecKterouNabidne;
         this.dostalaSvouVec = dostalaSvouVec;
     }
+
+    /**
+     * určuje zda hráč prvně mluví s postavou či ne, podle toho přiřadí určitou konverzaci
+     *
+     * @return zasílá text, který postava řekne
+     */
+
 
     public String mluv() {
         String text = "\n";
@@ -37,6 +48,14 @@ public class Postava implements IPostava{
         }
         return text;
     }
+
+    /**
+     * předání věcí mezi hráčem a postavou, pokud postava potřebuje (chce) předmět, tak se uloží, že jej dostala
+     *
+     * @param vec věc, kterou chceme dát postave
+     * @return posílá, zda předmět postava si vzala od hráče, nebo ne
+     */
+
 
     public boolean dej(Vec vec) {
         if (vec.getNazev().equals(vecKterouPotrebuje)) {

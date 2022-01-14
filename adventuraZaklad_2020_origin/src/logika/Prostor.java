@@ -5,15 +5,14 @@ import java.util.stream.Collectors;
 
 /**
  * Trida Prostor - popisuje jednotlivé prostory (místnosti) hry
- *
  * Tato třída je součástí jednoduché textové hry.
- *
  * "Prostor" reprezentuje jedno místo (místnost, prostor, ..) ve scénáři hry.
  * Prostor může mít sousední prostory připojené přes východy. Pro každý východ
  * si prostor ukládá odkaz na sousedící prostor.
  *
- * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
- * @version pro školní rok 2016/2017
+ * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
  */
 public class Prostor {
 
@@ -28,7 +27,7 @@ public class Prostor {
      * před domem"
      *
      * @param nazev nazev prostoru, jednoznačný identifikátor, jedno slovo nebo
-     * víceslovný název bez mezer.
+     *              víceslovný název bez mezer.
      * @param popis Popis prostoru.
      */
     public Prostor(String nazev, String popis) {
@@ -47,7 +46,6 @@ public class Prostor {
      * žádné chybové hlášení). Lze zadat též cestu ze do sebe sama.
      *
      * @param vedlejsi prostor, který sousedi s aktualnim prostorem.
-     *
      */
     public void setVychod(Prostor vedlejsi) {
         vychody.add(vedlejsi);
@@ -57,13 +55,13 @@ public class Prostor {
      * Metoda equals pro porovnání dvou prostorů. Překrývá se metoda equals ze
      * třídy Object. Dva prostory jsou shodné, pokud mají stejný název. Tato
      * metoda je důležitá z hlediska správného fungování seznamu východů (Set).
-     *
+     * <p>
      * Bližší popis metody equals je u třídy Object.
      *
      * @param o object, který se má porovnávat s aktuálním
      * @return hodnotu true, pokud má zadaný prostor stejný název, jinak false
-     */  
-      @Override
+     */
+    @Override
     public boolean equals(Object o) {
         // porovnáváme zda se nejedná o dva odkazy na stejnou instanci
         if (this == o) {
@@ -80,7 +78,7 @@ public class Prostor {
         //Vrátí true pro stejné názvy a i v případě, že jsou oba názvy null,
         //jinak vrátí false.
 
-       return (java.util.Objects.equals(this.nazev, druhy.nazev));       
+        return (java.util.Objects.equals(this.nazev, druhy.nazev));
     }
 
     /**
@@ -97,7 +95,7 @@ public class Prostor {
         vysledek = 37 * vysledek + hashNazvu;
         return vysledek;
     }
-      
+
 
     /**
      * Vrací název prostoru (byl zadán při vytváření prostoru jako parametr
@@ -106,7 +104,7 @@ public class Prostor {
      * @return název prostoru
      */
     public String getNazev() {
-        return nazev;       
+        return nazev;
     }
 
     /**
@@ -148,41 +146,40 @@ public class Prostor {
      * null, pokud prostor zadaného jména není sousedem.
      */
     public Prostor vratSousedniProstor(String nazevSouseda) {
-        List<Prostor>hledaneProstory = 
-            vychody.stream()
-                   .filter(sousedni -> sousedni.getNazev().equals(nazevSouseda))
-                   .collect(Collectors.toList());
-        if(hledaneProstory.isEmpty()){
+        List<Prostor> hledaneProstory =
+                vychody.stream()
+                        .filter(sousedni -> sousedni.getNazev().equals(nazevSouseda))
+                        .collect(Collectors.toList());
+        if (hledaneProstory.isEmpty()) {
             return null;
-        }
-        else {
+        } else {
             return hledaneProstory.get(0);
         }
     }
 
-    public void vlozVec(Vec vec){
+    public void vlozVec(Vec vec) {
         veci.add(vec);
     }
 
-    public void odeberVec(Vec vec){
+    public void odeberVec(Vec vec) {
         veci.remove(vec);
     }
 
-    public boolean obsahujeVec(String nazevVeci){
-        for( Vec vec : veci ){
-            if( vec.getNazev().equals(nazevVeci) ){
+    public boolean obsahujeVec(String nazevVeci) {
+        for (Vec vec : veci) {
+            if (vec.getNazev().equals(nazevVeci)) {
                 return true;
             }
         }
         return false;
     }
 
-    public Vec vyberVec(String nazevVeci){
+    public Vec vyberVec(String nazevVeci) {
         Vec vybranaVec = null;
-        for(Vec vec : veci){
+        for (Vec vec : veci) {
             vybranaVec = vec;
-            if ( vybranaVec != null ){
-                if(nazevVeci.equals(vybranaVec.getNazev())){
+            if (vybranaVec != null) {
+                if (nazevVeci.equals(vybranaVec.getNazev())) {
                     return vybranaVec;
                 }
             }
@@ -190,9 +187,9 @@ public class Prostor {
         return vybranaVec;
     }
 
-    private String seznamVeci(){
+    private String seznamVeci() {
         String seznam = "";
-        for( Vec vec : veci ){
+        for (Vec vec : veci) {
             seznam = seznam + vec.getNazev() + ", ";
         }
         return seznam;
@@ -206,20 +203,20 @@ public class Prostor {
 
     public String seznamPostav() {
         String seznam = "";
-        for( Postava postava : postavy ){
+        for (Postava postava : postavy) {
             seznam = seznam + postava.getJmeno() + ", ";
         }
         return seznam;
     }
 
     public Postava vratPostavu(String jmenoPostavy) {
-          Postava potrebnaPostava = null;
-          for ( Postava postava : postavy ) {
-              if (jmenoPostavy.equals(postava.getJmeno())){
-                  potrebnaPostava = postava;
-              }
-          }
-          return potrebnaPostava;
+        Postava potrebnaPostava = null;
+        for (Postava postava : postavy) {
+            if (jmenoPostavy.equals(postava.getJmeno())) {
+                potrebnaPostava = postava;
+            }
+        }
+        return potrebnaPostava;
     }
 
 

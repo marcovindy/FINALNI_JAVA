@@ -1,10 +1,13 @@
 package logika;
 
 /**
- *  Class Vec - popisuje atributy a chovani veci
- *  @author Marek Vaníček
- *  @version školní rok 2021/2022
+ * Class Vec - popisuje atributy a chovani veci
+ *
+ * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Černý, Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
  */
+
 public class Vec {
     private String nazev;
     private boolean prenositelna;
@@ -22,6 +25,7 @@ public class Vec {
 
     /**
      * vrati nazev veci
+     *
      * @return textu nazvu veci
      */
     public String getNazev() {
@@ -30,6 +34,7 @@ public class Vec {
 
     /**
      * vrati popis veci
+     *
      * @return textu popis veci
      */
     public String getPopis() {
@@ -38,6 +43,7 @@ public class Vec {
 
     /**
      * vrati, zda lze predmet sebrat
+     *
      * @return true pokud lze sebrat, false pokud nelze sebrat
      */
     public Boolean getLzeKonzumovat() {
@@ -46,6 +52,7 @@ public class Vec {
 
     /**
      * vrati, zda lze predmet sebrat
+     *
      * @return true pokud lze sebrat, false pokud nelze sebrat
      */
     public Boolean getPrenositelna() {
@@ -54,6 +61,7 @@ public class Vec {
 
     /**
      * nastavi cenu veci
+     *
      * @param cena - cena, kterou vec bude mit
      */
     public void setCena(int cena) {
@@ -62,6 +70,7 @@ public class Vec {
 
     /**
      * vrati cenu veci
+     *
      * @return cena veci
      */
     public int getCena() {
@@ -70,6 +79,7 @@ public class Vec {
 
     /**
      * nastavi body výdrže
+     *
      * @param bodyVydrze - vydrz, ktera se nastavi na vec
      */
     public void setBodyVydrze(int bodyVydrze) {
@@ -78,12 +88,12 @@ public class Vec {
 
     /**
      * vrati body výdrže konkrétní věci
+     *
      * @return body výdrže po konzumaci
      */
     public int getBodyVydrze() {
         return bodyVydrze;
     }
-
 
 
 }

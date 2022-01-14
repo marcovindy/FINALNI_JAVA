@@ -1,20 +1,21 @@
 package logika;
 
-/*******************************************************************************
+/**
+ * Class PostavaBandaOpilcu - konkrétní postava
  *
- *
- * @author    Marek Vaníček
- * @version   školní rok 2021/2022
+ * @author Marek Vaníček
+ * @version 1.0 pro školní rok 2021/2022
  */
+
 public class PrikazBatoh implements IPrikaz {
 
     private static final String NAZEV = "batoh";
     private HerniPlan plan;
 
     /**
-     *  Konstruktor třídy
+     * Konstruktor třídy
      *
-     *  @param plan herní plán, ve kterém se bude ve hře "chodit"
+     * @param plan herní plán, ve kterém se bude ve hře "chodit"
      */
     public PrikazBatoh(HerniPlan plan) {
         this.plan = plan;
@@ -24,8 +25,8 @@ public class PrikazBatoh implements IPrikaz {
     /**
      * Po zavolání příkazu se vypíše obsah batohu
      *
-     * @param   - vola se bez parametru
-     * @return  - Vrací obsah batohu
+     * @param - vola se bez parametru
+     * @return - Vrací obsah batohu
      */
 
     public String provedPrikaz(String... parametry) {
@@ -33,9 +34,9 @@ public class PrikazBatoh implements IPrikaz {
     }
 
     /**
-     *  Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
+     * Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
      *
-     *  @ return nazev prikazu
+     * @return nazev prikazu
      */
     public String getNazev() {
         return NAZEV;
