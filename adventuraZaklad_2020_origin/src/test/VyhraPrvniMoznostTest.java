@@ -239,7 +239,7 @@ public class VyhraPrvniMoznostTest {
         assertEquals("Jsi v mistnosti/prostoru Před kolejí, už vidíš vrátnici, ale nikdo tam není. Snad se konečně dostaneš dovnitř.\n" +
                 "Věci v prostoru: lavička, bota, \n" +
                 "Lidé v prostoru: holka_ze_záchodů, \n" +
-                "Východy: kolej, ulice_pod_lipami\n" +
+                "Východy: ulice_pod_lipami kolej\n" +
                 "Výdrž: 8", hra1.zpracujPrikaz("jdi před_kolejí"));
 
         // 22. krok
