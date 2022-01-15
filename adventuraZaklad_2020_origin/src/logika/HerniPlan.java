@@ -146,7 +146,7 @@ public class HerniPlan {
                 "[Hospodský]: Teď nemám čas\n",
                 "voda",
                 new Vec("ISIC", true, "VŠE ISIC", false),
-                this.getAktualniProstor(), predKoleji, this.getBatoh(), false, false);
+                zachodZeny, predKoleji, this.getBatoh(), false, false);
         zachodZeny.vlozPostavu(holkaZeZachodu);
 
         // === Naplnění místnosti - Hospoda hlavní místnost ===
@@ -233,13 +233,15 @@ public class HerniPlan {
                         [Ja]: Petře to jsi ty?! Proč sakra ležíš na lavičce.
                         [Petr]: Trochu jsem usnul...
                         [Ja]: Zvládneš dojít domů?
-                        [Petr]: Jasný, jasný, nemáš něco na pití nebo na jídlo?
-                        [Ja]: Zrovna teď ne hele, každopádně zkus dojít domů
+                        [Petr]: Jasný, jasný.
+                        [Ja]: Podívám se po něm, každopádně zkus dojít domů
                         [Petr]: Hele nechal sis u mě klíče, tady je máš.
                         [Ja]: Super, ty jsem hledal!
-                        *Petr ti předává klíče*
                         """,
-                        "[Kuchař]: *zzzZZZzz*\n", "jídlo", null);
+                        "[Kuchař]: *zzzZZZzz*\n", "špagety",
+                new Vec("klíče", true, "Klíče od pokoje.",
+                        false ),
+                uliceZizkovska, this.getBatoh());
         uliceZizkovska.vlozPostavu(leziciClovek);
 
         // === Naplnění místnosti - Koněvova ulice ===
@@ -251,7 +253,7 @@ public class HerniPlan {
         uliceKonevova.vyberVec("nakousklá_bageta").setBodyVydrze(-2);
         uliceKonevova.vlozVec(new Vec("zapalovač", true, "Hm, zapalovač.", false));
 
-        PostavaRandomTypek randomTypek = new PostavaRandomTypek("random_týpek", false, false,
+        PostavaVedlejsi randomTypek = new PostavaVedlejsi("random_týpek", false, false,
                 """
                [Random týpek]: Nemám zájem, děkuji.
                """,

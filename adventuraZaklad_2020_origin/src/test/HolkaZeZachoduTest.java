@@ -75,7 +75,6 @@ public class HolkaZeZachoduTest {
         hra1.zpracujPrikaz("jdi záchod_ženy");
 
 
-        // Kontrola zda rozhovor změní boolean jestli probehl rozhovor
         assertEquals(false, hra1.getHerniPlan().getAktualniProstor().vratPostavu("holka_ze_záchodů").isDostalaSvouVec());
         hra1.zpracujPrikaz("dej voda holka_ze_záchodů");
         assertEquals(true, hra1.getHerniPlan().getAktualniProstor().vratPostavu("holka_ze_záchodů").isDostalaSvouVec());
@@ -113,4 +112,21 @@ public class HolkaZeZachoduTest {
                         "[Ja]: Díky moc.\n",
                 hra1.zpracujPrikaz("mluv holka_ze_záchodů"));
     }
+
+    @Test
+    public void testSmazaniPostavy() {
+
+        hra1.zpracujPrikaz("jdi hospoda_hlavní_místnost");
+        hra1.zpracujPrikaz("seber voda");
+        hra1.zpracujPrikaz("jdi záchod_ženy");
+        hra1.zpracujPrikaz("dej voda holka_ze_záchodů");
+        hra1.zpracujPrikaz("jdi hospoda_hlavní_místnost");
+
+
+        assertEquals("Jsi v mistnosti/prostoru Né tak moc zapáchající záchody plné červenobílých kusů papíru okolo.\n" +
+                "Věci v prostoru: hodinky, záchod, peněženka, \n" +
+                "Lidé v prostoru: \n" +
+                "Východy: hospoda_hlavní_místnost\n" +
+                "Výdrž: 7", hra1.zpracujPrikaz("jdi záchod_ženy"));
+         }
 }
