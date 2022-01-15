@@ -12,7 +12,7 @@ public class PostavaHospodsky extends Postava {
 
     private Batoh batoh;
     private Postava servirka;
-    public boolean dostalVec = false;
+    public boolean dostalsVec = false;
 
     public PostavaHospodsky(String jmeno,
                             boolean probehlDulezityRozhovor,
@@ -28,13 +28,15 @@ public class PostavaHospodsky extends Postava {
         this.servirka = servirka;
     }
 
+
     @Override
     public String mluv() {
         if(servirka.isProbehlDulezityRozhovor()){
-            if(batoh.vlezeSeDoBatohu() && !(dostalVec) && servirka.isProbehlDulezityRozhovor()){
-                dostalVec = true;
+            if(batoh.vlezeSeDoBatohu() && !(dostalsVec) && servirka.isProbehlDulezityRozhovor()){
+                dostalsVec = true;
                 batoh.vlozVec(getVecKterouNabidne());
                 return """
+                    
                     [Ja]: Zdravím, nenašel se tu náhodou mobil?
                     [Hospodsky]: Jaký byl?
                     [Ja]: Modrý značka Wakasaki, průhledné pouzdro.

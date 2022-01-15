@@ -38,6 +38,8 @@ public class PrikazJdi implements IPrikaz {
 
         String smer = parametry[0];
 
+        Prostor aktualniProstor = plan.getAktualniProstor();
+
         // zkoušíme přejít do sousedního prostoru
         Prostor sousedniProstor = plan.getAktualniProstor().vratSousedniProstor(smer);
 
@@ -46,11 +48,33 @@ public class PrikazJdi implements IPrikaz {
         }
         else {
 
+            if( priselNaKolej(sousedniProstor.getNazev()) ) {
+                if ( plan.getBatoh().obsahujeVec("ISIC") ) {
+                    plan.ukoncitHru("Tvé ztracené věci co jsi našel: peněženka, telefon, \n" +
+                            "\n" +
+                            "Máš štěstí, že máš alespoň telefon, zavolal jsi spolubydlicímu, aby ti otevřel, protože nemáš klíče,\n" +
+                            "ten ti nechtěl telefon zvednout, ale když jsi slyšel za dveřmi, že mu vyzvání, tak jsi zakřičel >Vstávej Pepků!< a on ti otevřel.\n" +
+                            "\n");
+                    return "Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!\n";
+                } else {
+                    return "Bohužel nemáš ISIC, aby ses dostal na kolej.\n";
+                }
+            }
+
             plan.setVydrz( plan.getVydrz() - 1 );
             plan.zkontrolujVydrz(1);
             plan.setAktualniProstor(sousedniProstor);
             return sousedniProstor.dlouhyPopis(plan.getVydrz());
         }
+    }
+
+    public boolean priselNaKolej(String prostor){
+
+        if ( prostor.equals("kolej") ) {
+            return true;
+        }
+
+        return false;
     }
     
     /**

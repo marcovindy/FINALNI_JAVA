@@ -65,7 +65,7 @@ public class Batoh {
     public String vypisBatohu() {
         String text = "Pracně otevírám batoh\n";
         if (obsahBatohu.size() <= 0) {
-            text += "Obsah batohu: \n" + "Nic jsem v batohu nenašel";
+            text += "Obsah batohu: \n" + "Nic jsem v batohu nenašel\n";
         } else {
             text += "Obsah batohu: \n" + seznamVeci();
         }

@@ -115,7 +115,7 @@ public class Prostor {
      * @return Dlouhý popis prostoru
      */
     public String dlouhyPopis(int vydrz) {
-        return "Jsi v mistnosti/prostoru " + popis + ".\n"
+        return "Jsi v mistnosti/prostoru " + popis + "\n"
                 + "Věci v prostoru: " + seznamVeci() + "\n"
                 + "Lidé v prostoru: " + seznamPostav() + "\n"
                 + popisVychodu() + "\n"
@@ -129,11 +129,11 @@ public class Prostor {
      * @return Popis východů - názvů sousedních prostorů
      */
     private String popisVychodu() {
-        String vracenyText = "Východy:";
+        StringBuilder vracenyText = new StringBuilder("Východy:");
         for (Prostor sousedni : vychody) {
-            vracenyText += " " + sousedni.getNazev();
+            vracenyText.append(" ").append(sousedni.getNazev());
         }
-        return vracenyText;
+        return vracenyText.toString();
     }
 
     /**
@@ -199,6 +199,11 @@ public class Prostor {
         postavy.add(postava);
 
         return postava;
+    }
+
+    public void smazPostavu(String jmeno) {
+        Postava postava = vratPostavu(jmeno);
+        postavy.remove(postava);
     }
 
     public String seznamPostav() {
