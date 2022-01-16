@@ -144,11 +144,9 @@ public class PostavaHolkaZeZachodu extends Postava {
         return batoh;
     }
 
-
     public Prostor getAktualniProstor() {
         return aktualniProstor;
     }
-
 
     public Prostor getPredKoleji() {
         return predKoleji;

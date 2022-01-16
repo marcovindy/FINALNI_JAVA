@@ -20,5 +20,4 @@ public class PostavaCurajiciTypek extends Postava {
         super(jmeno, probehlDulezityRozhovor, dostalaSvouVec, hlavniRec, dalsiRec, vecKterouPotrebuje, vecKterouNabidne);
     }
 
-
 }

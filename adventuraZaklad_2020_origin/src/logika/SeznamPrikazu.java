@@ -71,11 +71,11 @@ public class SeznamPrikazu {
      * @return Řetězec, který obsahuje seznam přípustných příkazů
      */
     public String vratNazvyPrikazu() {
-        String seznam = "";
+        StringBuilder seznam = new StringBuilder();
         for (String slovoPrikazu : mapaSPrikazy.keySet()) {
-            seznam += slovoPrikazu + " ";
+            seznam.append(slovoPrikazu).append(" ");
         }
-        return seznam;
+        return seznam.toString();
     }
 
 }

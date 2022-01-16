@@ -206,11 +206,11 @@ public class Prostor {
     }
 
     public String seznamPostav() {
-        String seznam = "";
+        StringBuilder seznam = new StringBuilder();
         for (Postava postava : postavy) {
-            seznam = seznam + postava.getJmeno() + ", ";
+            seznam.append(postava.getJmeno()).append(", ");
         }
-        return seznam;
+        return seznam.toString();
     }
 
     public Postava vratPostavu(String jmenoPostavy) {

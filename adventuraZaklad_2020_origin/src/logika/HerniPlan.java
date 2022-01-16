@@ -391,10 +391,6 @@ public class HerniPlan {
         }
     }
 
-    public void prenusPostavu() {
-
-    }
-
     /**
      * Metoda kontroluje zda hráči nedošla výdrž
      *
@@ -457,12 +453,4 @@ public class HerniPlan {
         this.vydrz = vydrz;
     }
 
-
-    public Set<Prostor> getProstory() {
-        return prostory;
-    }
-
-    public void setProstory(Set<Prostor> prostory) {
-        this.prostory = prostory;
-    }
 }

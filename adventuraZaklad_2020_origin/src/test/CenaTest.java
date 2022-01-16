@@ -45,21 +45,23 @@ public class CenaTest {
 
     /***************************************************************************
      * Testuje, zda se hráč v obchodě, může podívat na cenu předmětu, který v tomto prostoru je
+     * a zda se hráč může podívat jen na cenu věcí z obchodu
      */
     @Test
     public void CenaVeci() {
 
-
         hra1.zpracujPrikaz("jdi hospoda_hlavní_místnost");
+
+        assertEquals("Na cenu se můžeš podívat jen v obchodě",
+                hra1.zpracujPrikaz("cena rohlík"));
+
         hra1.zpracujPrikaz("jdi před_hospodou");
         hra1.zpracujPrikaz("jdi ulice_žižkovská");
         hra1.zpracujPrikaz("jdi obchod");
 
 
-        assertEquals(":rohlík stojí 6",
+        assertEquals("rohlík stojí 6",
                 hra1.zpracujPrikaz("cena rohlík"));
-
-
 
     }
 }

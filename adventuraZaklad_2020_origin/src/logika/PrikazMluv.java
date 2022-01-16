@@ -25,8 +25,8 @@ public class PrikazMluv implements IPrikaz {
     /**
      * Po zavolání příkazu se vypíše obsah batohu????
      *
-     * @param   - vola se bez parametru
-     * @return  - Vrací obsah batohu
+     * @param   - jmeno postavy s kterou by chtěl hřáč mluvit uloženo v parametru 0
+     * @return  - Vrací dialog s postavou, či neúspěšnou konverzaci
      */
     @Override
     public String provedPrikaz(String... parametry) {

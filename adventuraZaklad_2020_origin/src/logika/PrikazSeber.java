@@ -3,6 +3,7 @@ package logika;
 /**
  * Třída PrikazSeber implementuje pro hru příkaz seber.
  * Tato třída je součástí jednoduché textové hry.
+ * Je určená k tomu, aby mohl hráč zvedat předměty (sebrat).
  *
  * @author Marek Vaníček
  * @version 5.0
