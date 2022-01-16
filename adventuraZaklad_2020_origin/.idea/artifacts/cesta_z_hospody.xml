@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="cesta_z_hospody">
+    <output-path>$PROJECT_DIR$/out</output-path>
+    <root id="archive" name="cesta_z_hospody.jar">
+      <element id="module-output" name="adventuraZaklad_2020_origin" />
+      <element id="library" level="module" name="JUnit5.7.0" module-name="adventuraZaklad_2020_origin" />
+    </root>
+  </artifact>
+</component>
