@@ -10,8 +10,8 @@ package logika;
 
 public class PostavaLeziciClovek extends Postava {
 
-    private Prostor aktualniProstor;
-    private Batoh batoh;
+    private final Prostor aktualniProstor;
+    private final Batoh batoh;
     public boolean dostalsVec = false;
 
     public PostavaLeziciClovek(String jmeno,

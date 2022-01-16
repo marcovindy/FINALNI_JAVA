@@ -44,10 +44,7 @@ public class KupTest {
     //== Vlastní testovací metody ==================================================
 
     /***************************************************************************
-     * Testuje průběh hry, po zavolání každěho příkazu testuje, zda hra končí
-     * a v jaké aktuální místnosti se hráč nachází.
-     * Při dalším rozšiřování hry doporučujeme testovat i jaké věci nebo osoby
-     * jsou v místnosti a jaké věci jsou v batohu hráče.
+     * Testuje koupení předmětu v obchodě
      *
      */
     @Test

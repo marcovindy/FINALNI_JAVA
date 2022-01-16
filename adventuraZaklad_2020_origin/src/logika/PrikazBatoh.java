@@ -11,7 +11,7 @@ package logika;
 public class PrikazBatoh implements IPrikaz {
 
     private static final String NAZEV = "batoh";
-    private HerniPlan plan;
+    private final HerniPlan plan;
 
     /**
      * Konstruktor třídy
@@ -26,7 +26,7 @@ public class PrikazBatoh implements IPrikaz {
     /**
      * Po zavolání příkazu se vypíše obsah batohu
      *
-     * @param - vola se bez parametru
+     * @param parametry - vola se bez parametru
      * @return - Vrací obsah batohu
      */
 

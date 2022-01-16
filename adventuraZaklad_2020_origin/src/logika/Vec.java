@@ -9,12 +9,22 @@ package logika;
  */
 
 public class Vec {
-    private String nazev;
-    private boolean prenositelna;
-    private String popis;
+    private final String nazev;
+    private final boolean prenositelna;
+    private final String popis;
     private int cena;
-    private boolean lzeKonzumovat;
+    private final boolean lzeKonzumovat;
     private int bodyVydrze;
+
+    /**
+     * Vytvoření věci se zadaným popisem, jestli se dá přenášet a jestli lze sníst
+     *
+     * @param nazev         nazev prostoru, jednoznačný identifikátor, jedno slovo nebo
+     *                      víceslovný název bez mezer.
+     * @param popis         Popis prostoru.
+     * @param prenositelna  jestli je věc přenositelná.
+     * @param lzeKonzumovat jestli věc lze sníst.
+     */
 
     public Vec(String nazev, boolean prenositelna, String popis, boolean lzeKonzumovat) {
         this.nazev = nazev;

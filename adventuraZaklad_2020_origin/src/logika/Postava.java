@@ -8,7 +8,7 @@ package logika;
  * @created Leden 2022
  */
 
-public class Postava implements IPostava{
+public class Postava implements IPostava {
 
     private final String jmeno;
     private boolean probehlDulezityRozhovor;
@@ -19,8 +19,17 @@ public class Postava implements IPostava{
     private Vec vecKterouNabidne;
 
     /**
-     * Konsktruktor třídy Postava
+     * Vytvoření věci se zadaným popisem, jestli se dá přenášet a jestli lze sníst
+     *
+     * @param jmeno                   jmeno postavy.
+     * @param probehlDulezityRozhovor jestli již s postavou se dříve mluvilo.
+     * @param dostalaSvouVec          jestli dostala věc kterou potřebuje.
+     * @param hlavniRec               prvni rozhovor.
+     * @param dalsiRec                dalsi rozhovory s postavou.
+     * @param vecKterouPotrebuje      právě konkrétní věc, kterou bychom jí měli dát.
+     * @param vecKterouNabidne        věc kterou nám ona může dát, pokud je to součástí nějakého úkolu.
      */
+
 
     public Postava(String jmeno, boolean probehlDulezityRozhovor, boolean dostalaSvouVec, String hlavniRec, String dalsiRec, String vecKterouPotrebuje, Vec vecKterouNabidne) {
         this.jmeno = jmeno;

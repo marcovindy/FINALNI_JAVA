@@ -1,8 +1,5 @@
 package logika;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Class HerniPlan - tato třída představuje mapu adventury
  * inicializuje prvky ze kterých se hra skládá:
@@ -18,11 +15,10 @@ import java.util.Set;
 
 public class HerniPlan {
 
-    private Hra hra;
+    private final Hra hra;
     private Prostor aktualniProstor;
-    private Batoh batoh;
+    private final Batoh batoh;
     private int vydrz;
-    private Set<Prostor> prostory;
 
 
     /**
@@ -33,7 +29,6 @@ public class HerniPlan {
 
     public HerniPlan(Hra hra) {
         batoh = new Batoh(10, 0);
-        prostory = new HashSet<>();
         zalozProstoryHry();
         this.hra = hra;
     }
@@ -167,7 +162,7 @@ public class HerniPlan {
                         [Servirka]: Ano? Ještě něco?
                         [Já]: Nene
                         """,
-                "hodinky",
+                "kytka",
                 null);
         hospodaHlavniMistnost.vlozPostavu(servirka);
 
@@ -180,7 +175,7 @@ public class HerniPlan {
                         """,
                 "[Hospodský]: Teď nemám čas\n",
                 "parek",
-                new Vec("mobil", true, "Hledaný mobil", false), this.getBatoh(), servirka);
+                new Vec("telefon", true, "Hledaný telefon!", false), this.getBatoh(), servirka);
         hospodaHlavniMistnost.vlozPostavu(hospodsky);
 
         PostavaOpilec opilec = new PostavaOpilec("opilec", false, false,
@@ -207,14 +202,12 @@ public class HerniPlan {
 
         predHospodou.vlozVec(new Vec("bota", true, "Nějaká pochozená bota.", false));
 
-
-
-        PostavaBezdomovec bezdomovec = new PostavaBezdomovec("bezdomovec", false, false,
-                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "hodinky", null);
-        predHospodou.vlozPostavu(bezdomovec);
         PostavaBandaOpilcu bandaOpilcu = new PostavaBandaOpilcu("banda_opilců", false, false,
-                "[Kuchař]: Co chceš?\n", "[Kuchař]: Nech mě.\n", "pivo", null);
+                "[Banda opilců]: Co chceš?\n", "[Kuchař]: Nech nás.\n", "pivo", null);
         predHospodou.vlozPostavu(bandaOpilcu);
+        PostavaBezdomovec bezdomovec = new PostavaBezdomovec("bezdomovec", false, false,
+                "[Bezdomovec]: Grh%^&*(?\n", "ZzzzZzzz\n", "hodinky", null);
+        predHospodou.vlozPostavu(bezdomovec);
 
 
         // === Naplnění místnosti - Žižkovská ulice ===
@@ -254,9 +247,12 @@ public class HerniPlan {
         PostavaVedlejsi randomTypek = new PostavaVedlejsi("random_týpek", false, false,
                 """
                [Random týpek]: Nemám zájem, děkuji.
+               [Já]: Né počkejte potřebuji vědět, kde je kolej VŠE, nevíte prosím?
+               [Random týpek]: Nemám zájem, děkuji.
                """,
                 """
                 [Random týpek]: Nemám zájem, děkuji.
+                [Já]: Ty vole.
                 """, "sluchátka", null);
         uliceKonevova.vlozPostavu(randomTypek);
 
@@ -277,7 +273,7 @@ public class HerniPlan {
                 [Starý muž]: Tak pokud budeš chtít slyšet více, tak já tu budu asi celou noc.
                 """,
                 """
-                [Starý muž]: Nemám zájem, děkuji.
+                [Starý muž]: Asi to necháme na jindy, jsem nějaký unavený na mluvení.
                 """, "sluchátka", null);
         ulicePodLipami.vlozPostavu(staryMuz);
 
@@ -306,7 +302,7 @@ public class HerniPlan {
         obchod.vyberVec("rohlík").setBodyVydrze(3);
         obchod.vyberVec("mléko").setCena(16);
         obchod.vyberVec("rohlík").setCena(6);
-        obchod.vyberVec("kytka").setCena(40);
+        obchod.vyberVec("kytka").setCena(50);
         obchod.vyberVec("zapalovač").setCena(25);
 
         PostavaVedlejsi prodavac = new PostavaVedlejsi("prodavač", false, false,
@@ -326,23 +322,6 @@ public class HerniPlan {
         smradlavaUlicka.vlozVec(new Vec("peníze", true, "Prachy.", false));
         smradlavaUlicka.vlozVec(new Vec("peníze", true, "Prachy.", false));
 
-        // === seznam prostorů ===
-
-        prostory.add(hospodaHlavniMistnost);
-        prostory.add(zachodMuzi);
-        prostory.add(zachodZeny);
-        prostory.add(hospodaKuchyn);
-        prostory.add(predHospodou);
-        prostory.add(uliceVinohradska);
-        prostory.add(uliceZizkovska);
-        prostory.add(obchod);
-        prostory.add(uliceKonevova);
-        prostory.add(ulicePodLipami);
-        prostory.add(uliceSpojovaci);
-        prostory.add(predKoleji);
-        prostory.add(smradlavaUlicka);
-        prostory.add(kanal);
-
 
 
         // === Nastavení počátční výdrže ===
@@ -358,7 +337,8 @@ public class HerniPlan {
      * @param operace pro zjištění z jakého příkazu nám kontrola přichází
      */
 
-    public void zkontrolujVydrz(int operace) {
+    public String zkontrolujVydrz(int operace) {
+        String text = "";
         if (operace == 1) {
             if (getVydrz() <= 0) {
                 String nazevAktualnihoProstoru = getAktualniProstor().getNazev();
@@ -367,39 +347,89 @@ public class HerniPlan {
                         || (nazevAktualnihoProstoru.equals("záchod_muži"))
                         || (nazevAktualnihoProstoru.equals("záchod_ženy"))
                         || (nazevAktualnihoProstoru.equals("hospoda_kuchyň"))) {
-                    ukoncitHru("""
+                    text = """
                             Bohužel jsi se úplně vyčerpal a usnul v hospodě.
                             V hospodě tě zamknuli a ráno nikdo nepřichází.
                             Kvůli tomu jsi nestihl přijít na zkoušku.
-                            Prohra!""");
+                            Prohra!""";
                 } else {
-                    ukoncitHru("""
+                    text = """
                             Bohužel jsi se úplně vyčerpal a usnul mimo postel.
                             Když jsi spal, tak tě někdo přepadl a ukradl ti všechno oblečení
                             Nahej jít na zkoušku nemůžeš a tak jsi ji nestihl.
-                            Prohra!""");
+                            Prohra!""";
                 }
             }
         } else if (operace == 2) {
             if (getVydrz() <= 0) {
-                ukoncitHru("""
+                text ="""
                         Bohužel jsi snědl něco co jsi neměl a usnul mimo postel.
                         Když jsi spal, tak tě někdo přepadl a ukradl ti všechno oblečení
                         Nahej jít na zkoušku nemůžeš a tak jsi ji nestihl.
-                        Prohra!""");
+                        Prohra!""";
             }
         }
+        return text;
     }
 
     /**
-     * Metoda kontroluje zda hráči nedošla výdrž
+     * Metoda zakončí hru
      *
-     * @param zaverecnyText pro text, který se vypíše na konci hry
      */
 
-    public void ukoncitHru(String zaverecnyText) {
-        hra.setText(zaverecnyText);
+    public void ukoncitHru() {
         hra.setKonecHry(true);
+    }
+
+    /**
+     * Metoda zasílá závěrečný text s výhrou nebo prohrou
+     *
+     * @return zašle závěrečný text s prohrou či výhrou
+     */
+
+    public String moznostiKonceKolej() {
+        Batoh batoh = getBatoh();
+        String text;
+        if (  (batoh.obsahujeVec("peněženka")) && (batoh.obsahujeVec("telefon")) ) {
+            text = """
+                    Tvé ztracené věci co jsi našel: peněženka, telefon,\s
+
+                    Máš štěstí, že máš alespoň telefon, zavolal jsi spolubydlicímu, aby ti otevřel, protože nemáš klíče,
+                    ten ti nechtěl telefon zvednout, ale když jsi slyšel za dveřmi, že mu vyzvání, tak jsi zakřičel >Vstávej Pepků!< a on ti otevřel.
+
+                    Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!""";
+        } else if ( batoh.obsahujeVec("telefon") && batoh.obsahujeVec("klíče") ) {
+            text = """
+                    Tvé ztracené věci co jsi našel: telefon, klíče,\s
+
+                    Super, dostal ses na kolej bez problému, škoda že sis nenašel peněženku, ale snad tam nebylo nic důležitého
+
+                    Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!""";
+        } else if ( batoh.obsahujeVec("klíče") ) {
+            text = """
+                    Tvé ztracené věci co jsi našel: klíče,\s
+
+                    Super, dostal ses na kolej bez problému, doufej, že se najde tvůj mobil a peněženka
+
+                    Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!""";
+        } else if ( batoh.obsahujeVec("peněženka") ) {
+            text = """
+                    Tvé ztracené věci co jsi našel: peněženka,\s
+                    Prohra. Dostal ses na kolej, ale nemáš ani klíče, kterýma by ses dostal na pokoj.
+                    Budík (mobil) tě ráno nevzbudil a tak jsi zaspal test.""";
+        }   else if ( batoh.obsahujeVec("telefon") ) {
+            text = """
+                    Tvé ztracené věci co jsi našel: telefon,\s
+
+                    Máš štěstí, že máš alespoň telefon, zavolal jsi spolubydlicímu, aby ti otevřel, protože nemáš klíče,
+                    ten ti nechtěl telefon zvednout, ale když jsi slyšel za dveřmi, že mu vyzvání, tak jsi zakřičel >Vstávej Pepků!< a on ti otevřel.
+
+                    Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!""";
+        } else {
+            text =  "\nProhra. Ráno ses neprobudil a zapsal test.";
+        }
+
+        return text;
     }
 
 

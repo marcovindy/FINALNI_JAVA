@@ -12,7 +12,7 @@ package logika;
 
 public class PrikazVyhod implements IPrikaz{
     private static final String NAZEV = "vyhod";
-    private HerniPlan plan;
+    private final HerniPlan plan;
 
     public PrikazVyhod(HerniPlan plan) {
         this.plan = plan;

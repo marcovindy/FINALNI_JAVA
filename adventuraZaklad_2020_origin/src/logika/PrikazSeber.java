@@ -11,7 +11,7 @@ package logika;
  */
 public class PrikazSeber implements IPrikaz {
     private static final String NAZEV = "seber";
-    private HerniPlan plan;
+    private final HerniPlan plan;
 
     public PrikazSeber(HerniPlan plan) {
         this.plan = plan;

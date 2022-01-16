@@ -5,7 +5,7 @@ import java.util.Set;
 
 /**
  * Class Batoh - v batohu se ukládají věci, které má postava u sebe
- * do batohu se lze kdykoliv podívat pomocí příkazu batoh
+ * do batohu se lze kdykoliv podívat pomocí příkazu batoh (PrikazBatoh Class)
  *
  * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Černý, Marek Vaníček
  * @version 5.0
@@ -14,18 +14,22 @@ import java.util.Set;
 
 public class Batoh {
 
-    private Set<Vec> obsahBatohu;
-    private int omezeniBatohu;
+    private final Set<Vec> obsahBatohu;
+    private final int omezeniBatohu;
     private int penize;
 
     /**
-     * konstruktor batohu
+     * Vytvoření věci se zadaným popisem, jestli se dá přenášet a jestli lze sníst
+     *
+     * @param omezeniBatohu kolik toho hráč unese.
+     * @param penize        kolik má hráč peněz.
      */
+
 
     public Batoh(int omezeniBatohu, int penize) {
         this.omezeniBatohu = omezeniBatohu;
         this.penize = penize;
-        obsahBatohu = new HashSet<Vec>();
+        obsahBatohu = new HashSet<>();
     }
 
     /**
@@ -35,14 +39,14 @@ public class Batoh {
      */
 
     public String seznamVeci() {
-        String seznam = "";
+        StringBuilder seznam = new StringBuilder();
         for (Vec vec : obsahBatohu) {
-            seznam = seznam + vec.getNazev() + ", ";
+            seznam.append(vec.getNazev()).append(", ");
         }
         if (obsahujeVec("peněženka")) {
-            seznam += stavPenez();
+            seznam.append(stavPenez());
         }
-        return seznam;
+        return seznam.toString();
     }
 
     /**
@@ -65,7 +69,10 @@ public class Batoh {
     public String vypisBatohu() {
         String text = "Pracně otevírám batoh\n";
         if (obsahBatohu.size() <= 0) {
-            text += "Obsah batohu: \n" + "Nic jsem v batohu nenašel\n";
+            text += """
+                    Obsah batohu:\s
+                    Nic jsem v batohu nenašel
+                    """;
         } else {
             text += "Obsah batohu: \n" + seznamVeci();
         }
@@ -95,10 +102,7 @@ public class Batoh {
      */
 
     public boolean vlezeSeDoBatohu() {
-        if (this.obsahBatohu.size() < this.omezeniBatohu) {
-            return true;
-        }
-        return false;
+        return this.obsahBatohu.size() < this.omezeniBatohu;
     }
 
     /**

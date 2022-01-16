@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
  */
 public class Prostor {
 
-    private String nazev;
-    private String popis;
-    private Set<Prostor> vychody;
-    private List<Vec> veci;
-    private Set<Postava> postavy;
+    private final String nazev;
+    private final String popis;
+    private final Set<Prostor> vychody;
+    private final List<Vec> veci;
+    private final List<Postava> postavy;
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -35,7 +35,7 @@ public class Prostor {
         this.popis = popis;
         vychody = new HashSet<>();
         veci = new ArrayList<>();
-        postavy = new HashSet<>();
+        postavy = new ArrayList<>();
     }
 
     /**
@@ -68,11 +68,10 @@ public class Prostor {
             return true;
         }
         // porovnáváme jakého typu je parametr 
-        if (!(o instanceof Prostor)) {
+        if (!(o instanceof Prostor druhy)) {
             return false;    // pokud parametr není typu Prostor, vrátíme false
         }
-        // přetypujeme parametr na typ Prostor 
-        Prostor druhy = (Prostor) o;
+        // přetypujeme parametr na typ Prostor
 
         //metoda equals třídy java.util.Objects porovná hodnoty obou názvů. 
         //Vrátí true pro stejné názvy a i v případě, že jsou oba názvy null,
@@ -157,13 +156,32 @@ public class Prostor {
         }
     }
 
+    /**
+     * Vkládá věci do prostoru
+     *
+     * @param vec pro věc kterou chci přidat do prostoru
+     */
+
     public void vlozVec(Vec vec) {
         veci.add(vec);
     }
 
+    /**
+     * Maže věci z prostoru
+     *
+     * @param vec pro věc kterou chci odebrat z prostoru
+     */
+
     public void odeberVec(Vec vec) {
         veci.remove(vec);
     }
+
+    /**
+     * Ptá se, zda v prostoru je konkrétní věc
+     *
+     * @param nazevVeci pro věc kterou chci přidat do prostoru
+     * @return zašle true, pokud je věc v prostoru a false pokud ne
+     */
 
     public boolean obsahujeVec(String nazevVeci) {
         for (Vec vec : veci) {
@@ -173,6 +191,13 @@ public class Prostor {
         }
         return false;
     }
+
+    /**
+     * Vybere konkrétní věc podle jména
+     *
+     * @param nazevVeci pro věc kterou chci vybrat
+     * @return pošle věc, kterou jsme chtěli vybrat a nebo null
+     */
 
     public Vec vyberVec(String nazevVeci) {
         Vec vybranaVec = null;
@@ -187,6 +212,12 @@ public class Prostor {
         return vybranaVec;
     }
 
+    /**
+     * Vytvoří seznam věcí a dá je do stringu na vypsání
+     *
+     * @return zašle seznam věcí ve stringu
+     */
+
     public String seznamVeci() {
         StringBuilder seznam = new StringBuilder();
         for (Vec vec : veci) {
@@ -195,15 +226,35 @@ public class Prostor {
         return seznam.toString();
     }
 
+    /**
+     * vloží postavu do prostoru
+     *
+     * @param postava pro postavu kterou chci přidat do prostoru
+     */
+
     public void vlozPostavu(Postava postava) {
         postavy.add(postava);
 
     }
 
+    /**
+     * vloží postavu do prostoru
+     *
+     * @param jmeno podle jmena vymaže postavu
+     */
+
+
     public void smazPostavu(String jmeno) {
         Postava postava = vratPostavu(jmeno);
         postavy.remove(postava);
     }
+
+    /**
+     * vytvoří seznam postav do stringu a pošle ho na vypsání
+     *
+     * @return zašle ve stringu seznam postav
+     */
+
 
     public String seznamPostav() {
         StringBuilder seznam = new StringBuilder();
@@ -212,6 +263,12 @@ public class Prostor {
         }
         return seznam.toString();
     }
+
+    /**
+     * Vybere postavu podle jména a zašle dále jako objekt
+     *
+     * @return zašle postavu již jako objekt
+     */
 
     public Postava vratPostavu(String jmenoPostavy) {
         Postava potrebnaPostava = null;

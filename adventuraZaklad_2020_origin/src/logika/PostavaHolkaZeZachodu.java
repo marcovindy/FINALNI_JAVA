@@ -14,10 +14,10 @@ package logika;
 public class PostavaHolkaZeZachodu extends Postava {
 
     private boolean dostalsVec;
-    private boolean jePredKoleji;
-    private Batoh batoh;
-    private Prostor aktualniProstor;
-    private Prostor predKoleji;
+    private final boolean jePredKoleji;
+    private final Batoh batoh;
+    private final Prostor aktualniProstor;
+    private final Prostor predKoleji;
 
     public PostavaHolkaZeZachodu(String jmeno,
                                  boolean probehlDulezityRozhovor,

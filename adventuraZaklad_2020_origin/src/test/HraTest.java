@@ -52,14 +52,11 @@ public class HraTest {
      */
     @Test
     public void testPrubehHry() {
-        assertEquals("domeček", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("jdi les");
-        assertEquals(false, hra1.konecHry());
-        assertEquals("les", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("jdi hluboký_les");
-        assertEquals(false, hra1.konecHry());
-        assertEquals("hluboký_les", hra1.getHerniPlan().getAktualniProstor().getNazev());
+        assertEquals("záchod_muži", hra1.getHerniPlan().getAktualniProstor().getNazev());
+        hra1.zpracujPrikaz("jdi hospoda_hlavní_místnost");
+        assertFalse(hra1.konecHry());
+        assertEquals("hospoda_hlavní_místnost", hra1.getHerniPlan().getAktualniProstor().getNazev());
         hra1.zpracujPrikaz("konec");
-        assertEquals(true, hra1.konecHry());
+        assertTrue(hra1.konecHry());
     }
 }

@@ -1,0 +1,283 @@
+--------------------------------
+
+Úvod
+
+"Au!
+Právě ses probudil na hospodských záchodech a pěkně tě bolí hlava.
+Není ti moc dobře a vše kolem tebe se motá.
+Moc si toho nepamatuješ, víš že jsi byl s kamarádama ze školy pít a najednou nic.
+Cítíš, že je čas se dostat k sobě na kolej a vyspat se, ať zvládneš zítra test ze statistiky.
+A však nemůžeš najít svůj mobil, peněženku a klíče! Sakra!
+"
+"Jsi v mistnosti/prostoru Staré poblité záchody s hnědými věcmi na stěnách a stropu."
+"Věci v prostoru: hadr, hnědá_hmota, záchod, "
+"Lidé v prostoru: čůrající_týpek, "
+"Východy: hospoda_hlavní_místnost"
+
+--------------------------------
+
+0. krok
+Příkaz: "batoh"
+"Pracně otevírám batoh"
+"Obsah batohu: 
+Nic jsem v batohu nenašel
+"
+
+--------------------------------
+
+1. krok
+Příkaz: "jdi hospoda_hlavní_místnost"
+"Jsi v mistnosti/prostoru Žižkovská hospoda plná ožralých lidí."
+"Věci v prostoru: voda, pivo, podtácek, stůl, židle, "
+"Lidé v prostoru: hospodský, opilec, servírka, "
+"Východy: hospoda_kuchyň před_hospodou záchod_muži záchod_ženy"
+"Výdrž: 10"
+
+--------------------------------
+
+2.krok
+Příkaz: "mluv hospodský"
+"
+[Hospodský]: No ty ale vypadáš! Měl bys jít domů, tady spát nemůžeš.
+[Já]: Hned půjdu, akorát si nemůžu vzpomenout, kde mám své věci....
+[Hospodský]: Podívej se na záchody, tam jsi strávil pomalu celej večer.
+[Já]: Hmm dík.
+"
+
+--------------------------------
+
+3.krok
+Příkaz: "seber pivo"
+"Pivo zdarma, to mám ale štěstí!"
+"Vložil jsi do batohu: pivo."
+
+--------------------------------
+
+3,5.krok
+Příkaz: "seber voda"
+"Voda, proč ne."
+"Vložil jsi do batohu: voda."
+
+--------------------------------
+
+4.krok
+Příkaz: "jdi záchod_ženy"
+"Jsi v mistnosti/prostoru Né tak moc zapáchající záchody plné červenobílých kusů papíru okolo."
+"Věci v prostoru: hodinky, záchod, peněženka, "
+"Lidé v prostoru: holka_ze_záchodů, "
+"Východy: hospoda_hlavní_místnost"
+"Výdrž: 9"
+
+--------------------------------
+
+5.krok
+Příkaz: "seber peněženka"
+"Tu jsem hledal!"
+"Vložil jsi do batohu: peněženka."
+
+--------------------------------
+
+6.krok
+Příkaz: "seber hodinky"
+"Kdo to tu asi nechal? Uvidíme."
+"Vložil jsi do batohu: hodinky."
+
+-------------------------------
+
+7.krok
+Příkaz: "mluv holka_ze_záchodů"
+"
+[Holka ze záchodů]: Blééééé.! #$%^@ Grk. Ueeee!
+[Ja]: No teda... A pak že já vypadám, že mám dost.
+[Holka ze záchodů]: Co tady děláš. Nech mě být, odejdi.
+[Ja]: Myslím, že potřebuješ trochu vody, počkej.
+"
+
+-------------------------------
+
+8.krok
+Příkaz: "dej voda holka_ze_záchodů"
+
+-------------------------------
+
+9. krok
+Příkaz: "jdi hospoda_hlavní_místnost"
+"Jsi v mistnosti/prostoru Žižkovská hospoda plná ožralých lidí."
+"Věci v prostoru: "podtácek, stůl, židle, "
+"Lidé v prostoru: "hospodský, opilec, servírka, "
+"Východy: hospoda_kuchyň před_hospodou záchod_muži záchod_ženy"
+"Výdrž: 8"
+
+-------------------------------
+
+10. krok
+Příkaz: "jdi hospoda_kuchyň"
+"Jsi v mistnosti/prostoru Zaplivaná kuchyň, kde pobíhají šváby a krysy."
+"Lidé v prostoru: kuchař, "
+"Věci v prostoru: sporák, špagety, nůž, obracečka, "
+"Východy: hospoda_hlavní_místnost"
+"Výdrž: 7"
+
+-------------------------------
+
+11.krok
+Příkaz: "seber nůž"
+"To vypadá pěkně nebezpečně."
+"Vložil jsi do batohu: nůž."
+
+-------------------------------
+
+12.krok
+Příkaz: "seber špagety"
+"Voní suprově, snad tak budou i chutnat. Už jsem nějaký jídlo potřeboval. Teď to stačí jen zkonzumovat."
+"Vložil jsi do inventáře: špagety."
+
+-------------------------------
+
+13.krok
+Příkaz: "jdi hospoda_hlavní_místnost"
+"Věci v prostoru: podtácek, stůl, židle, "
+"Lidé v prostoru: hospodský, opilec, servírka, "
+"Východy: hospoda_kuchyň před_hospodou záchod_muži záchod_ženy"
+"Výdrž: 6"
+
+-------------------------------
+
+14.krok
+Příkaz: "mluv servírka"
+"
+[Ja]: Můžu zaplatit?
+[Servirka]: V pořádku už to udělali kamarádi s kterýma jsi tu byl
+[Ja]: Aah super a neviděla jste tu mobil a klíče, nějak jsem je vytratil.
+[Servirka]: Nějaký muž našel mobil, klíče bohužel ne, ale zeptej se na mobil hospodského.
+[Ja]: Super, díky. Tak se mějte.
+"
+
+-------------------------------
+
+15.krok
+Příkaz: "mluv hospodský"
+"
+[Ja]: Zdravím, nenašel se tu náhodou mobil?
+[Hospodsky]: Jaký byl?
+[Ja]: Modrý značka Wakasaki, průhledné pouzdro.
+[Hospodsky]: Tak ten tu čirou náhodou mám.
+*Hospodsky předává telefon*
+[Ja]: Děkuju, naschle.
+"
+
+-------------------------------
+
+16.krok
+Příkaz: "jdi před_hospodou"
+"Jsi v mistnosti/prostoru Ulice před hospodou, kde slyšíš policejní sirény a "zpěv" opilců."
+"Lidé v prostoru: banda_opilců, bezdomovec, "
+"Věci v prostoru: bota, "
+"Východy: hospoda_hlavní_místnost ulice_žizkovská ulice_vinohradská"
+"Výdrž: 5"
+
+-------------------------------
+
+17.krok
+Příkaz: "jdi ulice_žižkovská"
+"Jsi v mistnosti/prostoru Ulice Žižkovská, zaplivaná ulice, kterou docela znáš."
+"Lidé v prostoru: ležící_člověk, "
+"Věci v prostoru: lavička, popelnice, lampa, nakouslá_bageta, "
+"Východy: před_hospodou ulice_koněvova obchod"
+"Výdrž: 4"
+
+-------------------------------
+
+18.krok
+Příkaz: "konzumuj špagety"
+"Mňam, tak to bylo sakra dobrý! Hned se cítím líp."
+"Výdrž: 11"
+
+-------------------------------
+
+19.krok
+Příkaz: "mluv ležící_člověk"
+"
+[Ja]: Petře to jsi ty?! Proč sakra ležíš na lavičce.
+[Petr]: Trochu jsem usnul...
+[Ja]: Zvládneš dojít domů?
+[Petr]: Jasný, jasný, nemáš něco na pití nebo na jídlo?
+[Ja]: Zrovna teď ne hele, každopádně zkus dojít domů
+[Petr]: Hele nechal sis u mě klíče, tady je máš.
+[Ja]: Super, ty jsem hledal!
+*Petr ti předává klíče*
+"
+
+-------------------------------
+
+20.krok
+Příkaz: "jdi ulice_koněvova"
+"Jsi v mistnosti/prostoru Ulice Koněvova, dlouhá ulice plná temných zákoutí."
+"Lidé v prostoru: random_týpek, "
+"Věci v prostoru: lavička, popelnice, lampa, nakouslá_bageta, zapalovač, "
+"Východy: ulice_žižkovská ulice_pod_lipami smradlavá_ulička kanál"
+"Výdrž: 10"
+
+-------------------------------
+
+21.krok
+Příkaz: "seber zapalovač"
+"Hm, zapalovač."
+"Vložil jsi do batohu: zapalovač."
+
+-------------------------------
+
+23.krok
+Příkaz: "jdi ulice_pod_lipami"
+"Jsi v mistnosti/prostoru Ulice Pod Lipami, tady už to znáš moc dobře, jsi blízko!"
+"Lidé v prostoru: starý_muž, "
+"Věci v prostoru: auto, patník, strom, zápalky, kniha, "
+"Východy: před_kolejí ulice_koněvova ulice_spojovací"
+"Výdrž: 9"
+
+-------------------------------
+
+24.krok
+Příkaz: "jdi před_kolejí"
+"Jsi v mistnosti/prostoru Před kolejí, už vidíš vrátnici, ale nikdo tam není. Snad se konečně dostaneš dovnitř."
+"Lidé v prostoru: holka_ze_záchodů, "
+"Věci v prostoru: lavička, bota, "
+"Východy: kolej, ulice_pod_lipami"
+"Výdrž: 8"
+
+-------------------------------
+
+25.krok
+Příkaz: "mluv holka_ze_zachodů"
+"
+[Ja]: Ahoj.
+[Holka ze záchodů]: To jsi ty! Co mi dal tu vodu v hospodě na záchodech. *Cítí se trapně*
+[Ja]: No vypadá to, že už ti je líp.
+[Holka ze záchodů]: Už je to lepší, takže jsi taky tady z kolejí.
+[Ja]: Jsem, ale asi jsem ztratil ISIC, nepůjčíš mi ho náhodou?
+[Holka ze záchodů]: Otevřu ti, počkej.
+*Píp*
+*Blokuju dveře, aby se nezavřeli*
+[Ja]: Díky moc.
+[Holka ze záchodů]: Nemáš náhodou oheň?
+[Ja]: Mám, tady si vem zapalovač, já ho potřebovat nebudu.
+"
+
+-------------------------------
+
+26.krok
+Příkaz: "dej zapalovač holka_ze_zachodů"
+
+-------------------------------
+
+27.krok
+Příkaz: "jdi kolej"
+
+"Tvé ztracené věci co jsi našel: peněženka, telefon, 
+
+Máš štěstí, že máš alespoň telefon, zavolal jsi spolubydlicímu, aby ti otevřel, protože nemáš klíče,
+ten ti nechtěl telefon zvednout, ale když jsi slyšel za dveřmi, že mu vyzvání, tak jsi zakřičel >Vstávej Pepků!< a on ti otevřel.
+
+Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!"
+
+-------------------------------

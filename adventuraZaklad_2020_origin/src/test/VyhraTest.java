@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 5.0
  * @created Leden 2022
  */
-public class VyhraPrvniMoznostTest {
+public class VyhraTest {
     private Hra hra1;
 
     //== Datové atributy (statické i instancí)======================================
@@ -70,7 +70,7 @@ public class VyhraPrvniMoznostTest {
         assertEquals(false, hra1.konecHry());
         assertEquals("Jsi v mistnosti/prostoru Žižkovská hospoda plná ožralých lidí.\n" +
                 "Věci v prostoru: voda, pivo, podtácek, stůl, židle, \n" +
-                "Lidé v prostoru: hospodský, opilec, servírka, \n" +
+                "Lidé v prostoru: servírka, hospodský, opilec, \n" +
                 "Východy: před_hospodou záchod_muži záchod_ženy hospoda_kuchyň\n" +
                 "Výdrž: 10", hra1.getHerniPlan().getAktualniProstor().dlouhyPopis(hra1.getHerniPlan().getVydrz()));
 
@@ -126,7 +126,7 @@ public class VyhraPrvniMoznostTest {
 
         assertEquals("Jsi v mistnosti/prostoru Žižkovská hospoda plná ožralých lidí.\n" +
                 "Věci v prostoru: podtácek, stůl, židle, \n" +
-                "Lidé v prostoru: hospodský, opilec, servírka, \n" +
+                "Lidé v prostoru: servírka, hospodský, opilec, \n" +
                 "Východy: před_hospodou záchod_muži záchod_ženy hospoda_kuchyň\n" +
                 "Výdrž: 8", hra1.zpracujPrikaz("jdi hospoda_hlavní_místnost"));
 
@@ -152,7 +152,7 @@ public class VyhraPrvniMoznostTest {
 
         assertEquals("Jsi v mistnosti/prostoru Žižkovská hospoda plná ožralých lidí.\n" +
                 "Věci v prostoru: podtácek, stůl, židle, \n" +
-                "Lidé v prostoru: hospodský, opilec, servírka, \n" +
+                "Lidé v prostoru: servírka, hospodský, opilec, \n" +
                 "Východy: před_hospodou záchod_muži záchod_ženy hospoda_kuchyň\n" +
                 "Výdrž: 6", hra1.zpracujPrikaz("jdi hospoda_hlavní_místnost"));
 

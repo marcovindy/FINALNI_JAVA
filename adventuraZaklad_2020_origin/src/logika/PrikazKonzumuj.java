@@ -10,7 +10,7 @@ package logika;
 public class PrikazKonzumuj implements IPrikaz {
 
     private static final String NAZEV = "konzumuj";
-    private HerniPlan plan;
+    private final HerniPlan plan;
 
     /**
      *  Konstruktor třídy
@@ -24,8 +24,8 @@ public class PrikazKonzumuj implements IPrikaz {
     /**
      * Po zavolání příkazu se vypíše obsah batohu????
      *
-     * @param   - vola se bez parametru
-     * @return  - Vrací obsah batohu
+     * @param parametry - zde se uloží, co by měl hráč sníst
+     * @return  - Vrací text kde je uvedeno co se stalo, nebo nestalo, pokud něco sní
      */
     @Override
     public String provedPrikaz(String... parametry) {
@@ -43,7 +43,8 @@ public class PrikazKonzumuj implements IPrikaz {
                     plan.setVydrz(plan.getVydrz() + pozadovanaVec.getBodyVydrze());
                     if ( pozadovanaVec.getBodyVydrze() < 0 ) {
                         text = "Bléééé, tak tohle mi fakt nepomohlo.\n" + "Výdrž: " + plan.getVydrz();
-                        plan.zkontrolujVydrz(2);
+                        text += "\n" + plan.zkontrolujVydrz(2) ;
+                        plan.ukoncitHru();
                     } else if ( pozadovanaVec.getBodyVydrze() >= 4 ) {
                         text = "Mňam, tak to bylo sakra dobrý! Hned se cítím líp.\n" + "Výdrž: " + plan.getVydrz() ;
                     } else {

@@ -1,0 +1,13 @@
+=================================
+         Cesta z hospody
+ Hardcore hra pro jednoho hráče
+=================================
+
+Tato hra je o tom, že jsi student co se probudí v hospodě na záchodech a není ti úplně nejlíp, tak se chceš
+dostat na kolej a vyspat se, ale... Cesta nebude jednoduchá, máš omezenou výdrž a ztratil jsi peněženku, mobil a klíče.
+Po cestě můžeš zažít dost dobrodružství, kdo ví, jestli budou stát za to, nebo bys je raději nezažil.
+
+Hra může skončit více způsoby, nejpravděpodobněji usneš někde na chodníku, ale pokud budeš hrát správně,
+tak se dostaneš na kolej a vyspíš se na test ze statistiky.
+
+když už se člověk dostane ke koleji, tak není vyhráno, jelikož pro vstup potřebuješ mít některé z potřebných věcí (klíče, telefon, ISIC, někoho kdo ti otevře)

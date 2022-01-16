@@ -10,12 +10,12 @@ package logika;
 public class PrikazMluv implements IPrikaz {
 
     private static final String NAZEV = "mluv";
-    private HerniPlan plan;
+    private final HerniPlan plan;
 
     /**
-     *  Konstruktor třídy
+     * Konstruktor třídy
      *
-     *  @param plan herní plán, ve kterém se bude ve hře "chodit"
+     * @param plan herní plán, ve kterém se bude ve hře "chodit"
      */
     public PrikazMluv(HerniPlan plan) {
         this.plan = plan;
@@ -23,30 +23,29 @@ public class PrikazMluv implements IPrikaz {
     }
 
     /**
-     * Po zavolání příkazu se vypíše obsah batohu????
+     * Po zavolání příkazu se hráč snaží mluvit s postavou
      *
-     * @param   - jmeno postavy s kterou by chtěl hřáč mluvit uloženo v parametru 0
-     * @return  - Vrací dialog s postavou, či neúspěšnou konverzaci
+     * @param parametry - jmeno postavy s kterou by chtěl hřáč mluvit uloženo v parametru 0
+     * @return - Vrací dialog s postavou, či neúspěšnou konverzaci
      */
     @Override
     public String provedPrikaz(String... parametry) {
-        if( parametry.length == 0 ){
+        if (parametry.length == 0) {
             return "Musíš říct s kým chceš mluvit";
-        } else if (parametry.length > 1){
+        } else if (parametry.length > 1) {
             return "Můžeš mluvit jen s jednou postavou současně";
         } else {
-            if(plan.getAktualniProstor().vratPostavu(parametry[0]) != null){
-                String rozhovor = plan.getAktualniProstor().vratPostavu(parametry[0]).mluv();
-                return rozhovor;
+            if (plan.getAktualniProstor().vratPostavu(parametry[0]) != null) {
+                return plan.getAktualniProstor().vratPostavu(parametry[0]).mluv();
             }
         }
         return parametry[0] + " zde není";
     }
 
     /**
-     *  Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
+     * Metoda vrací název příkazu (slovo které používá hráč pro jeho vyvolání)
      *
-     *  @ return nazev prikazu
+     * @ return nazev prikazu
      */
     public String getNazev() {
         return NAZEV;

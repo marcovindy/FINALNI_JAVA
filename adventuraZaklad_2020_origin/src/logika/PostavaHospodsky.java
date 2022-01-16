@@ -11,8 +11,8 @@ package logika;
 
 public class PostavaHospodsky extends Postava {
 
-    private Batoh batoh;
-    private Postava servirka;
+    private final Batoh batoh;
+    private final Postava servirka;
     public boolean dostalsVec = false;
 
     public PostavaHospodsky(String jmeno,

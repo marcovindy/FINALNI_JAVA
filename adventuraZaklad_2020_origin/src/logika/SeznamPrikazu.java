@@ -1,6 +1,5 @@
 package logika;
 
-import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +18,7 @@ import java.util.Map;
 
 public class SeznamPrikazu {
     // mapa pro uložení přípustných příkazů
-    private Map<String, IPrikaz> mapaSPrikazy;
+    private final Map<String, IPrikaz> mapaSPrikazy;
 
 
     /**
@@ -47,11 +46,7 @@ public class SeznamPrikazu {
      * @return instance třídy, která provede požadovaný příkaz
      */
     public IPrikaz vratPrikaz(String retezec) {
-        if (mapaSPrikazy.containsKey(retezec)) {
-            return mapaSPrikazy.get(retezec);
-        } else {
-            return null;
-        }
+        return mapaSPrikazy.getOrDefault(retezec, null);
     }
 
     /**

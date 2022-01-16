@@ -1,40 +1,48 @@
 package logika;
 
 /**
- *  Třída PrikazDej implementuje pro hru příkaz dej.
- *  Tato třída je součástí jednoduché textové hry.
+ * Třída PrikazDej implementuje pro hru příkaz dej.
+ * Tato třída je součástí jednoduché textové hry.
  *
  * @author Marek Vaníček
  * @version 5.0
  * @created Leden 2022
  */
 
-public class PrikazDej implements IPrikaz{
+public class PrikazDej implements IPrikaz {
     private static final String NAZEV = "dej";
-    private HerniPlan plan;
+    private final HerniPlan plan;
 
     public PrikazDej(HerniPlan plan) {
         this.plan = plan;
     }
 
+    /**
+     * Po zavolání příkazu hráč zkouší dát někdo nějakou věc
+     *
+     * @param parametry - Věc kterou chci někomu dát
+     * @return - Vrací text co hráč postavě dává a jaké, pokud postava věc nechce (viz. Postava Class), tak napíše
+     * proč nemůže/nechce
+     */
+
     @Override
     public String provedPrikaz(String... parametry) {
         String text;
-        if ( parametry.length <= 1 ) {
+        if (parametry.length <= 1) {
             text = "Musíš mi říct, co a komu dát";
             return text;
         } else {
             String pozadovanaVec = parametry[0];
             String pozadovanaPostava = parametry[1];
-            if( !(plan.getBatoh().obsahujeVec(pozadovanaVec)) ){
+            if (!(plan.getBatoh().obsahujeVec(pozadovanaVec))) {
                 text = pozadovanaVec + " nemáš u sebe";
-            } else if ( plan.getAktualniProstor().vratPostavu(pozadovanaPostava) == null ){
+            } else if (plan.getAktualniProstor().vratPostavu(pozadovanaPostava) == null) {
                 text = pozadovanaPostava + " zde není";
             } else {
                 Vec vec = plan.getBatoh().vyberVec(pozadovanaVec);
                 Postava postava = plan.getAktualniProstor().vratPostavu(pozadovanaPostava);
                 boolean povedloSe = postava.dej(vec);
-                if ( !(povedloSe) ){
+                if (!(povedloSe)) {
                     text = pozadovanaPostava + " nechce předmet " + pozadovanaVec;
                 } else {
                     plan.getBatoh().vyhodVec(vec);

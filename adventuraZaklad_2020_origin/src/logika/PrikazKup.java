@@ -10,7 +10,7 @@ package logika;
  */
 public class PrikazKup implements IPrikaz {
     private static final String NAZEV = "kup";
-    private HerniPlan plan;
+    private final HerniPlan plan;
 
     /**
      *  Konstruktor třídy

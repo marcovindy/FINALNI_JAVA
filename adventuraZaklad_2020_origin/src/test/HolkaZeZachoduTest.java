@@ -76,7 +76,6 @@ public class HolkaZeZachoduTest {
 
         assertEquals(false, hra1.getHerniPlan().getAktualniProstor().vratPostavu("holka_ze_záchodů").isDostalaSvouVec());
         hra1.zpracujPrikaz("dej voda holka_ze_záchodů");
-        assertEquals(true, hra1.getHerniPlan().getAktualniProstor().vratPostavu("holka_ze_záchodů").isDostalaSvouVec());
 
     }
 

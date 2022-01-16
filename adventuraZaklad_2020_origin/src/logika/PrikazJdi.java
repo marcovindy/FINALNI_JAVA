@@ -10,7 +10,7 @@ package logika;
  */
 public class PrikazJdi implements IPrikaz {
     private static final String NAZEV = "jdi";
-    private HerniPlan plan;
+    private final HerniPlan plan;
 
     /**
      * Konstruktor třídy
@@ -39,8 +39,6 @@ public class PrikazJdi implements IPrikaz {
 
         String smer = parametry[0];
 
-        Prostor aktualniProstor = plan.getAktualniProstor();
-
         // zkoušíme přejít do sousedního prostoru
         Prostor sousedniProstor = plan.getAktualniProstor().vratSousedniProstor(smer);
 
@@ -50,22 +48,23 @@ public class PrikazJdi implements IPrikaz {
 
             if (priselNaKolej(sousedniProstor.getNazev())) {
                 if (plan.getBatoh().obsahujeVec("ISIC")) {
-                    plan.ukoncitHru("");
-                    return "Tvé ztracené věci co jsi našel: peněženka, telefon, \n" +
-                            "\n" +
-                            "Máš štěstí, že máš alespoň telefon, zavolal jsi spolubydlicímu, aby ti otevřel, protože nemáš klíče,\n" +
-                            "ten ti nechtěl telefon zvednout, ale když jsi slyšel za dveřmi, že mu vyzvání, tak jsi zakřičel >Vstávej Pepků!< a on ti otevřel.\n" +
-                            "\n" +
-                            "Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!";
+                    plan.ukoncitHru();
+                    return plan.moznostiKonceKolej();
                 } else {
                     return "Bohužel nemáš ISIC, aby ses dostal na kolej.\n";
                 }
             }
 
             plan.setVydrz(plan.getVydrz() - 1);
-            plan.zkontrolujVydrz(1);
-            plan.setAktualniProstor(sousedniProstor);
-            return sousedniProstor.dlouhyPopis(plan.getVydrz());
+            if (plan.getVydrz() < 0) {
+                plan.ukoncitHru();
+                return plan.zkontrolujVydrz(1);
+            } else {
+                plan.setAktualniProstor(sousedniProstor);
+                return sousedniProstor.dlouhyPopis(plan.getVydrz());
+            }
+
+
         }
     }
 
