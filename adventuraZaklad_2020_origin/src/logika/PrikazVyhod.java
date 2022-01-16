@@ -1,5 +1,15 @@
 package logika;
 
+/**
+ * Třída PrikazVyhod implementuje pro hru příkaz vyhod.
+ * Tato třída je součástí jednoduché textové hry.
+ * Slouží k tomu, abychom mohli vyhodit předmět z batohu
+ *
+ * @author Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
+ */
+
 public class PrikazVyhod implements IPrikaz{
     private static final String NAZEV = "vyhod";
     private HerniPlan plan;

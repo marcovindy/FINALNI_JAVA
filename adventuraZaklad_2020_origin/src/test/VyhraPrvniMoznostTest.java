@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /*******************************************************************************
- * Testovací třída HraTest slouží ke komplexnímu otestování
- * třídy Hra
+ * Testovací třída VyhraPrvniMoznostTest slouží k otestování, zda hra může být zakončena dle scénáře
  *
- * @author Jarmila Pavlíčková
- * @version pro školní rok 2016/2017
+ * @author Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
  */
 public class VyhraPrvniMoznostTest {
     private Hra hra1;
@@ -44,11 +44,7 @@ public class VyhraPrvniMoznostTest {
     //== Vlastní testovací metody ==================================================
 
     /***************************************************************************
-     * Testuje průběh hry, po zavolání každěho příkazu testuje, zda hra končí
-     * a v jaké aktuální místnosti se hráč nachází.
-     * Při dalším rozšiřování hry doporučujeme testovat i jaké věci nebo osoby
-     * jsou v místnosti a jaké věci jsou v batohu hráče.
-     *
+     * Testuje podle scénáře, zda může být hra vyhrána. (dokončena)
      */
     @Test
     public void testVyhra1() {
@@ -243,7 +239,7 @@ public class VyhraPrvniMoznostTest {
                 "Výdrž: 8", hra1.zpracujPrikaz("jdi před_kolejí"));
 
         // 22. krok
-
+        assertEquals("před_kolejí", hra1.getHerniPlan().getAktualniProstor().getNazev());
         assertEquals("\n" +
                 "[Ja]: Ahoj.\n" +
                 "[Holka ze záchodů]: To jsi ty! Co mi dal tu vodu v hospodě na záchodech. *Cítí se trapně*\n" +
@@ -255,14 +251,14 @@ public class VyhraPrvniMoznostTest {
                 "*Blokuju dveře, aby se nezavřeli*\n" +
                 "[Ja]: Díky moc.\n" +
                 "[Holka ze záchodů]: Nemáš náhodou oheň?\n" +
-                "[Ja]: Mám, tady si vem zapalovač, já ho potřebovat nebudu.\n", hra1.zpracujPrikaz("mluv holka_ze_zachodů"));
+                "[Ja]: Mám, tady si vem zapalovač, já ho potřebovat nebudu.\n", hra1.zpracujPrikaz("mluv holka_ze_záchodů"));
 
         // 22. krok
 
-        assertEquals("", hra1.zpracujPrikaz("dej zapalovač holka_ze_zachodů"));
+        assertEquals("zapalovač předána postavě holka_ze_záchodů", hra1.zpracujPrikaz("dej zapalovač holka_ze_záchodů"));
         // 22. krok
 
-        assertEquals("vé ztracené věci co jsi našel: peněženka, telefon, \n" +
+        assertEquals("Tvé ztracené věci co jsi našel: peněženka, telefon, \n" +
                 "\n" +
                 "Máš štěstí, že máš alespoň telefon, zavolal jsi spolubydlicímu, aby ti otevřel, protože nemáš klíče,\n" +
                 "ten ti nechtěl telefon zvednout, ale když jsi slyšel za dveřmi, že mu vyzvání, tak jsi zakřičel >Vstávej Pepků!< a on ti otevřel.\n" +

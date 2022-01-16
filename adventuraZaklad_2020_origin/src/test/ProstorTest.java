@@ -8,8 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * Testovací třída ProstorTest slouží ke komplexnímu otestování
  * třídy Prostor
  *
- * @author    Jarmila Pavlíčková
- * @version   pro skolní rok 2016/2017
+ * @author Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
  */
 public class ProstorTest
 {
@@ -46,12 +47,12 @@ public class ProstorTest
      */
     @Test
     public  void testLzeProjit() {		
-        Prostor prostor1 = new Prostor("hala", "vstupní hala budovy VŠE na Jižním městě");
-        Prostor prostor2 = new Prostor("bufet", "bufet, kam si můžete zajít na svačinku");
+        Prostor prostor1 = new Prostor("záchod_muži", "vstupní hala budovy VŠE na Jižním městě");
+        Prostor prostor2 = new Prostor("kolej", "bufet, kam si můžete zajít na svačinku");
         prostor1.setVychod(prostor2);
         prostor2.setVychod(prostor1);
-        assertEquals(prostor2, prostor1.vratSousedniProstor("bufet"));
-        assertEquals(null, prostor2.vratSousedniProstor("pokoj"));
+        assertEquals(prostor2, prostor1.vratSousedniProstor("kolej"));
+        assertEquals(null, prostor2.vratSousedniProstor("záchod_ženy"));
     }
 
 }

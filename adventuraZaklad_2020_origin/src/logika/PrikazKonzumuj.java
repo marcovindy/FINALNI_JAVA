@@ -3,23 +3,22 @@ package logika;
 /*******************************************************************************
  *
  *
- * @author    Marek Vaníček
- * @version   školní rok 2021/2022
+ * @author Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
  */
 public class PrikazKonzumuj implements IPrikaz {
 
     private static final String NAZEV = "konzumuj";
     private HerniPlan plan;
-    private Hra hra;
 
     /**
      *  Konstruktor třídy
      *
      *  @param plan herní plán, ve kterém se bude ve hře "chodit"
      */
-    public PrikazKonzumuj(HerniPlan plan, Hra hra) {
+    public PrikazKonzumuj(HerniPlan plan) {
         this.plan = plan;
-        this.hra = hra;
     }
 
     /**
@@ -32,7 +31,7 @@ public class PrikazKonzumuj implements IPrikaz {
     public String provedPrikaz(String... parametry) {
         String text;
         if( parametry.length == 0 ){
-            return "Musíš říct co chceš konzumovat";
+            return "Musíš říct, co chceš konzumovat";
         } else if (parametry.length > 1){
             return "Můžeš konzumovat pouze jednu věc současně";
         } else {

@@ -3,8 +3,9 @@ package logika;
 /*******************************************************************************
  *
  *
- * @author    Marek Vaníček
- * @version   školní rok 2021/2022
+ * @author Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
  */
 public class PrikazMluv implements IPrikaz {
 

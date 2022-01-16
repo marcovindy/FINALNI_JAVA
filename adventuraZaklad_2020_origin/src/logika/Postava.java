@@ -4,7 +4,8 @@ package logika;
  * Class Postava - obecna trida pro vsechny postavy, další postavy se extendují, zde je jejich basic logika
  *
  * @author Marek Vaníček
- * @version 1.0 pro školní rok 2021/2022
+ * @version 5.0
+ * @created Leden 2022
  */
 
 public class Postava implements IPostava{

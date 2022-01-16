@@ -33,7 +33,9 @@ public class Hra implements IHra {
         platnePrikazy.vlozPrikaz(new PrikazVyhod(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazMluv(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazDej(herniPlan));
-        platnePrikazy.vlozPrikaz(new PrikazKonzumuj(herniPlan, this));
+        platnePrikazy.vlozPrikaz(new PrikazKonzumuj(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazKup(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazCena(herniPlan));
 
     }
 

@@ -3,9 +3,10 @@ package logika;
 /**
  *  Třída PrikazKonec implementuje pro hru příkaz konec.
  *  Tato třída je součástí jednoduché textové hry.
- *  
- *@author     Jarmila Pavlickova
- *@version    pro školní rok 2016/2017
+ *
+ * @author Jarmila Pavlíčková, Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
  *  
  */
 

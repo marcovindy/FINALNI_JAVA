@@ -187,18 +187,17 @@ public class Prostor {
         return vybranaVec;
     }
 
-    private String seznamVeci() {
-        String seznam = "";
+    public String seznamVeci() {
+        StringBuilder seznam = new StringBuilder();
         for (Vec vec : veci) {
-            seznam = seznam + vec.getNazev() + ", ";
+            seznam.append(vec.getNazev()).append(", ");
         }
-        return seznam;
+        return seznam.toString();
     }
 
-    public Postava vlozPostavu(Postava postava) {
+    public void vlozPostavu(Postava postava) {
         postavy.add(postava);
 
-        return postava;
     }
 
     public void smazPostavu(String jmeno) {

@@ -5,11 +5,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /*******************************************************************************
- * Testovací třída HraTest slouží ke komplexnímu otestování
- * třídy Hra
+ * Testovací třída HolkaZeZachoduTest slouží ke komplexnímu otestování
+ * postavy holka_ze_záchodů
  *
- * @author    Jarmila Pavlíčková
- * @version  pro školní rok 2016/2017
+ * @author Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
  */
 public class HolkaZeZachoduTest {
     private Hra hra1;
@@ -43,11 +44,7 @@ public class HolkaZeZachoduTest {
     //== Vlastní testovací metody ==================================================
 
     /***************************************************************************
-     * Testuje průběh hry, po zavolání každěho příkazu testuje, zda hra končí
-     * a v jaké aktuální místnosti se hráč nachází.
-     * Při dalším rozšiřování hry doporučujeme testovat i jaké věci nebo osoby
-     * jsou v místnosti a jaké věci jsou v batohu hráče.
-     *
+     * Testuje zda se u postaví mění typ rozhovoru.
      */
     @Test
     public void testRozhovorHolka() {
@@ -65,7 +62,9 @@ public class HolkaZeZachoduTest {
 
     }
 
-
+    /***************************************************************************
+     * Testuje zda postava může dostat předmět, který chce.
+     */
     @Test
     public void testPredaniVeci() {
 
@@ -81,6 +80,9 @@ public class HolkaZeZachoduTest {
 
     }
 
+    /***************************************************************************
+     * Testuje zda se může postava přesunout do jiné místnosti po splnění úkolu.
+     */
     @Test
     public void presunHolky() {
         hra1.zpracujPrikaz("jdi hospoda_hlavní_místnost");
@@ -113,6 +115,10 @@ public class HolkaZeZachoduTest {
                 hra1.zpracujPrikaz("mluv holka_ze_záchodů"));
     }
 
+
+    /***************************************************************************
+     * Testuje zda se postava smaže z aktuálního prostoru po přesunu postavy.
+     */
     @Test
     public void testSmazaniPostavy() {
 

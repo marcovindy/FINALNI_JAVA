@@ -9,9 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 /*******************************************************************************
  * Testovací třída SeznamPrikazuTest slouží ke komplexnímu otestování třídy  
  * SeznamPrikazu
- * 
- * @author    Luboš Pavlíček
- * @version   pro školní rok 2016/2017
+ *
+ * @author Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
  */
 public class SeznamPrikazuTest
 {

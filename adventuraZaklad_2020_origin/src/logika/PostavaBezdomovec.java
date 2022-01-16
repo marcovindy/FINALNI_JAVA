@@ -4,7 +4,8 @@ package logika;
  * Class PostavaBezdomovec - konkrétní postava
  *
  * @author Marek Vaníček
- * @version 1.0 pro školní rok 2021/2022
+ * @version 5.0
+ * @created Leden 2022
  */
 
 public class PostavaBezdomovec extends Postava {

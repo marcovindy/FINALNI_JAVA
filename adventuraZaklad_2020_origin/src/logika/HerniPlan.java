@@ -57,14 +57,12 @@ public class HerniPlan {
         Prostor uliceZizkovska = new Prostor("ulice_žižkovská", "Ulice Žižkovská, zaplivaná ulice, kterou docela znáš.");
         Prostor uliceVinohradska = new Prostor("ulice_vinohradská", "Ulice před hospodou, kde slyšíš policejní sirény a \"zpěv\" opilců.");
         Prostor uliceKonevova = new Prostor("ulice_koněvova", "Ulice Koněvova, dlouhá ulice plná temných zákoutí.");
-        Prostor obchod = new Prostor("obchod", "Tady bych si něco mohl koupit.");
+        Prostor obchod = new Prostor("obchod", "Obchod, tady bych si něco mohl koupit.");
         Prostor ulicePodLipami = new Prostor("ulice_pod_lipami", "Ulice Pod Lipami, tady už to znáš moc dobře, jsi blízko!");
         Prostor smradlavaUlicka = new Prostor("smradlavá_ulička", "Ulička s pochybným individuem.");
         Prostor kanal = new Prostor("kanál", "Temnota, proč by sem někdo chodil?.");
         Prostor predKoleji = new Prostor("před_kolejí", "Před kolejí, už vidíš vrátnici, ale nikdo tam není. Snad se konečně dostaneš dovnitř.");
         Prostor uliceSpojovaci = new Prostor("ulice_spojovací", "Konečná, odsud už dál asi nepůjdeš.");
-        Prostor kino = new Prostor("kino", "");
-        Prostor hrbitov = new Prostor("hrbitov", "");
         Prostor kolej = new Prostor("kolej", "");
 
 
@@ -92,8 +90,6 @@ public class HerniPlan {
         obchod.setVychod(uliceZizkovska);
 
         uliceVinohradska.setVychod(predHospodou);
-        uliceVinohradska.setVychod(kino);
-        uliceVinohradska.setVychod(hrbitov);
 
         uliceKonevova.setVychod(uliceZizkovska);
         uliceKonevova.setVychod(ulicePodLipami);
@@ -192,6 +188,7 @@ public class HerniPlan {
         hospodaHlavniMistnost.vlozPostavu(opilec);
 
 
+
         // === Naplnění místnosti - Hospoda kuchyň ===
 
         hospodaKuchyn.vlozVec(new Vec("sporák", false, "Au.", false));
@@ -230,14 +227,15 @@ public class HerniPlan {
 
         PostavaLeziciClovek leziciClovek = new PostavaLeziciClovek("ležící_člověk", false, false,
                         """
-                        [Ja]: Petře to jsi ty?! Proč sakra ležíš na lavičce.
-                        [Petr]: Trochu jsem usnul...
-                        [Ja]: Zvládneš dojít domů?
-                        [Petr]: Jasný, jasný.
-                        [Ja]: Podívám se po něm, každopádně zkus dojít domů
-                        [Petr]: Hele nechal sis u mě klíče, tady je máš.
-                        [Ja]: Super, ty jsem hledal!
-                        """,
+                               [Ja]: Petře to jsi ty?! Proč sakra ležíš na lavičce.
+                               [Petr]: Trochu jsem usnul...
+                               [Ja]: Zvládneš dojít domů?
+                               [Petr]: Jasný, jasný, nemáš něco na pití nebo na jídlo?
+                               [Ja]: Zrovna teď ne hele, každopádně zkus dojít domů
+                               [Petr]: Hele nechal sis u mě klíče, tady je máš.
+                               [Ja]: Super, ty jsem hledal!
+                               *Petr ti předává klíče*
+                                """,
                         "[Kuchař]: *zzzZZZzz*\n", "špagety",
                 new Vec("klíče", true, "Klíče od pokoje.",
                         false ),
@@ -283,11 +281,52 @@ public class HerniPlan {
                 """, "sluchátka", null);
         ulicePodLipami.vlozPostavu(staryMuz);
 
-        // === Naplnění místnosti - Pod Lipami ulice ===
+        // === Naplnění místnosti - Před kolejí ===
 
-        predKoleji.vlozVec(new Vec("lavička", false, "Krásnej trabant, ten žeru.", false));
-        predKoleji.vlozVec(new Vec("bota", false, "Prostě patník.", false));
+        predKoleji.vlozVec(new Vec("lavička", false, "Hm.", false));
+        predKoleji.vlozVec(new Vec("bota", false, "Bota, úžasné, wtf.", false));
 
+        // === Naplnění místnosti - Ulice Vinohradská ===
+
+        uliceVinohradska.vlozVec(new Vec("lavička", false, "Krásnej trabant, ten žeru.", false));
+        uliceVinohradska.vlozVec(new Vec("peníze", true, "Prachy.", false));
+
+        // === Naplnění místnosti - Smradlavá ulička ===
+
+        smradlavaUlicka.vlozVec(new Vec("ISIC", true, "VŠE ISIC.", false));
+        smradlavaUlicka.vlozVec(new Vec("peníze", true, "Prachy.", false));
+
+        // === Naplnění místnosti - Obchod ===
+
+        obchod.vlozVec(new Vec("mléko", true, "Trvanlivé, to bude učitě v pohodě.", true));
+        obchod.vlozVec(new Vec("rohlík", true, "Trochu tvrdý, ale nevadí.", true));
+        obchod.vlozVec(new Vec("kytka", true, "Doma vypěstované rostliky, moc hezké, ty by se mohli někomu líbit.", false));
+        obchod.vlozVec(new Vec("zapalovač", true, "Huste zapalák.", false));
+        obchod.vyberVec("mléko").setBodyVydrze(4);
+        obchod.vyberVec("rohlík").setBodyVydrze(3);
+        obchod.vyberVec("mléko").setCena(16);
+        obchod.vyberVec("rohlík").setCena(6);
+        obchod.vyberVec("kytka").setCena(40);
+        obchod.vyberVec("zapalovač").setCena(25);
+
+        PostavaVedlejsi prodavac = new PostavaVedlejsi("prodavač", false, false,
+                """
+                [Já]: Mohu si něco koupit?
+                [Prodavač]: Určitě, pokud máš peníze a pobereš to.
+                (Stačí napsat kup a pak předmět, pokud se chceš podívat na cenu, tak napiš cena a předmět)
+                """,
+                """
+                [Prodavač]: Tak co to bude.
+                (Stačí napsat kup a pak předmět, pokud se chceš podívat na cenu, tak napiš cena a předmět)
+                """, "rádio", null);
+        obchod.vlozPostavu(prodavac);
+
+        // === Naplnění místnosti - Kanál ===
+
+        smradlavaUlicka.vlozVec(new Vec("peníze", true, "Prachy.", false));
+        smradlavaUlicka.vlozVec(new Vec("peníze", true, "Prachy.", false));
+
+        // === seznam prostorů ===
 
         prostory.add(hospodaHlavniMistnost);
         prostory.add(zachodMuzi);
@@ -296,8 +335,6 @@ public class HerniPlan {
         prostory.add(predHospodou);
         prostory.add(uliceVinohradska);
         prostory.add(uliceZizkovska);
-        prostory.add(hrbitov);
-        prostory.add(kino);
         prostory.add(obchod);
         prostory.add(uliceKonevova);
         prostory.add(ulicePodLipami);

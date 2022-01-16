@@ -4,8 +4,9 @@ package logika;
  *  Třída PrikazDej implementuje pro hru příkaz dej.
  *  Tato třída je součástí jednoduché textové hry.
  *
- *@author     Marek Vaníček
- *@version    1.0 pro školní rok 2021/2022
+ * @author Marek Vaníček
+ * @version 5.0
+ * @created Leden 2022
  */
 
 public class PrikazDej implements IPrikaz{
@@ -18,7 +19,7 @@ public class PrikazDej implements IPrikaz{
 
     @Override
     public String provedPrikaz(String... parametry) {
-        String text = "";
+        String text;
         if ( parametry.length <= 1 ) {
             text = "Musíš mi říct, co a komu dát";
             return text;

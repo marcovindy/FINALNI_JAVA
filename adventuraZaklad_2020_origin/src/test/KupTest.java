@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /*******************************************************************************
  * Testovací třída HraTest slouží ke komplexnímu otestování
- * třídy Hra
+ * třídy PrikazKup
  *
  * @author Marek Vaníček
  * @version 5.0
  * @created Leden 2022
  */
-public class HraTest {
+public class KupTest {
     private Hra hra1;
 
     //== Datové atributy (statické i instancí)======================================
@@ -48,18 +48,31 @@ public class HraTest {
      * a v jaké aktuální místnosti se hráč nachází.
      * Při dalším rozšiřování hry doporučujeme testovat i jaké věci nebo osoby
      * jsou v místnosti a jaké věci jsou v batohu hráče.
-     * 
+     *
      */
     @Test
-    public void testPrubehHry() {
-        assertEquals("domeček", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("jdi les");
-        assertEquals(false, hra1.konecHry());
-        assertEquals("les", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("jdi hluboký_les");
-        assertEquals(false, hra1.konecHry());
-        assertEquals("hluboký_les", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("konec");
-        assertEquals(true, hra1.konecHry());
+    public void KoupeniVeci() {
+        hra1.getHerniPlan().getBatoh().setPenize(100);
+
+        hra1.zpracujPrikaz("jdi hospoda_hlavní_místnost");
+        hra1.zpracujPrikaz("jdi před_hospodou");
+        hra1.zpracujPrikaz("jdi ulice_žižkovská");
+        hra1.zpracujPrikaz("jdi obchod");
+
+        assertEquals("Jsi v mistnosti/prostoru Obchod, tady bych si něco mohl koupit.\n" +
+                "Věci v prostoru: mléko, rohlík, kytka, zapalovač, \n" +
+                "Lidé v prostoru: prodavač, \n" +
+                "Východy: ulice_žižkovská\n" +
+                "Výdrž: "+hra1.getHerniPlan().getVydrz(),
+
+                hra1.getHerniPlan().getAktualniProstor().dlouhyPopis(hra1.getHerniPlan().getVydrz()));
+
+        assertEquals("Vložil jsi do batohu: rohlík.",
+                hra1.zpracujPrikaz("kup rohlík"));
+
+        assertEquals("Taková věc zde není",
+                hra1.zpracujPrikaz("kup rohlík"));
+
+
     }
 }
