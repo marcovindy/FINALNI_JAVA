@@ -331,6 +331,50 @@ public class HerniPlan {
 
     }
 
+    public Prostor vytvorPrvniKouzelnaMistnost() {
+        Prostor kouzelnaMistnost = new Prostor("kouzelná_místnost_abraka", "Kouzelná místnost Abrakadabra, kde lze vidět kouzelného dědečka.");
+
+        PostavaKouzelna kouzelnyDedecek = new PostavaKouzelna("kouzelný_dědeček", false, false,
+                """
+                [Já]: Dobrý den, kde jsem se to ocitl? To snad musí být sen, nebo jsem zase se opil a někam dostal?
+                [Kouzelný dědeček]: Nazdar holomku, já jsem kouzelník Abraka.
+                [Já]: Co to říkáte? Jakože umíte nějaký supr, čupr triky?
+                [Kouzelný dědeček]: To si piš. Ale abych udělal supr tríček, tak potřebuju brýle, které má u sebe moje stará.
+                [Já]: Já vám je klidně přinesu, kde vaší starou najdu?
+                [Kouzelný dědeček]: Stačí říct slovíčko čárymáryfuk a budeš u ní. Ale pozor, je hrozná, jen tak ti je nedá.
+                [Já]: Tak já to tedy zkusím.
+                (Odemkl sis příkaz čárymáryfuk, tento příkaz lze vykonat jen v této místnosti)
+                """,
+                """
+                [Kouzelný dědeček]: Tak co, už máš moje brejle? Jak říkám, čárymáryfuk a jsi u mé staré.
+                """, "brýle", null,
+                this);
+        kouzelnaMistnost.vlozPostavu(kouzelnyDedecek);
+
+        return kouzelnaMistnost;
+    }
+
+    public Boolean vytvorDruhaKouzelnaMistnost() {
+        Prostor kouzelnaMistnost2 = new Prostor("kouzelná_místnost_čárymáry", "Kouzelná místnost čárymáryfuk, kde lze vidět starou babičku.");
+
+
+        PostavaBabicka kouzelnaBabicka = new PostavaBabicka("kouzelná_babička", false, false,
+                """
+                [Já]: Dobrý den babičko, jak jsem se tu sakra dostal?
+                [Kouzelná babička]: To víš tohle jsou kouzla. Já jsem kouzelná babička čáry máry.
+                [Já]: Ach tak.
+                """,
+                """
+                [Kouzelná babička]: Tak co, už máš moje brejle? Jak říkám, čárymáryfuk a jsi u mé staré.
+                """, "rádio", null,
+                this);
+        kouzelnaMistnost2.vlozPostavu(kouzelnaBabicka);
+
+        return true;
+    }
+
+
+
     /**
      * Metoda kontroluje zda hráči nedošla výdrž
      *

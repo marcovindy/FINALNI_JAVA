@@ -1,14 +1,14 @@
 package logika;
 
 /**
- * Class PrikazBatoh - Třída slouží pro otevření batohu (seznamu věcí uvnitř batohu)
+ * Class PrikazCarymaryfuk - Třída slouží k ....
  *
  * @author Marek Vaníček
  * @version 5.0
  * @created Leden 2022
  */
 
-public class PrikazBatoh implements IPrikaz {
+public class PrikazCarymaryfuk implements IPrikaz {
 
     private static final String NAZEV = "batoh";
     private final HerniPlan plan;
@@ -18,7 +18,7 @@ public class PrikazBatoh implements IPrikaz {
      *
      * @param plan herní plán, ve kterém se bude ve hře "chodit"
      */
-    public PrikazBatoh(HerniPlan plan) {
+    public PrikazCarymaryfuk(HerniPlan plan) {
         this.plan = plan;
 
     }
