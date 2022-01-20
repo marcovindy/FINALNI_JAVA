@@ -19,7 +19,7 @@ public class HerniPlan {
     private Prostor aktualniProstor;
     private final Batoh batoh;
     private int vydrz;
-
+    public Prostor puvodniProstor;
 
     /**
      * Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -183,7 +183,6 @@ public class HerniPlan {
         hospodaHlavniMistnost.vlozPostavu(opilec);
 
 
-
         // === Naplnění místnosti - Hospoda kuchyň ===
 
         hospodaKuchyn.vlozVec(new Vec("sporák", false, "Au.", false));
@@ -219,19 +218,19 @@ public class HerniPlan {
         uliceZizkovska.vyberVec("nakouslá_bageta").setBodyVydrze(-3);
 
         PostavaLeziciClovek leziciClovek = new PostavaLeziciClovek("ležící_člověk", false, false,
-                        """
-                               [Ja]: Petře to jsi ty?! Proč sakra ležíš na lavičce.
-                               [Petr]: Trochu jsem usnul...
-                               [Ja]: Zvládneš dojít domů?
-                               [Petr]: Jasný, jasný, nemáš něco na pití nebo na jídlo?
-                               [Ja]: Zrovna teď ne hele, každopádně zkus dojít domů
-                               [Petr]: Hele nechal sis u mě klíče, tady je máš.
-                               [Ja]: Super, ty jsem hledal!
-                               *Petr ti předává klíče*
-                                """,
-                        "[Kuchař]: *zzzZZZzz*\n", "špagety",
+                """
+                        [Ja]: Petře to jsi ty?! Proč sakra ležíš na lavičce.
+                        [Petr]: Trochu jsem usnul...
+                        [Ja]: Zvládneš dojít domů?
+                        [Petr]: Jasný, jasný, nemáš něco na pití nebo na jídlo?
+                        [Ja]: Zrovna teď ne hele, každopádně zkus dojít domů
+                        [Petr]: Hele nechal sis u mě klíče, tady je máš.
+                        [Ja]: Super, ty jsem hledal!
+                        *Petr ti předává klíče*
+                         """,
+                "[Kuchař]: *zzzZZZzz*\n", "špagety",
                 new Vec("klíče", true, "Klíče od pokoje.",
-                        false ),
+                        false),
                 uliceZizkovska, this.getBatoh());
         uliceZizkovska.vlozPostavu(leziciClovek);
 
@@ -246,14 +245,14 @@ public class HerniPlan {
 
         PostavaVedlejsi randomTypek = new PostavaVedlejsi("random_týpek", false, false,
                 """
-               [Random týpek]: Nemám zájem, děkuji.
-               [Já]: Né počkejte potřebuji vědět, kde je kolej VŠE, nevíte prosím?
-               [Random týpek]: Nemám zájem, děkuji.
-               """,
+                        [Random týpek]: Nemám zájem, děkuji.
+                        [Já]: Né počkejte potřebuji vědět, kde je kolej VŠE, nevíte prosím?
+                        [Random týpek]: Nemám zájem, děkuji.
+                        """,
                 """
-                [Random týpek]: Nemám zájem, děkuji.
-                [Já]: Ty vole.
-                """, "sluchátka", null);
+                        [Random týpek]: Nemám zájem, děkuji.
+                        [Já]: Ty vole.
+                        """, "sluchátka", null);
         uliceKonevova.vlozPostavu(randomTypek);
 
 
@@ -267,14 +266,14 @@ public class HerniPlan {
 
         PostavaStaryMuz staryMuz = new PostavaStaryMuz("starý_muž", false, false,
                 """
-                [Já]: Dědo co tu děláte takhle večer, to je nebezpečné.
-                [Starý muž]: Mladý muži já jsem toho už zažil, byl jsem ve vietnamu víš... Jooo to tehdy by...
-                [Já]: Promiňte, rád bych si poslechl, jaké to bylo ve vietnamu, ale trochu spěchám, ale mějte se.
-                [Starý muž]: Tak pokud budeš chtít slyšet více, tak já tu budu asi celou noc.
-                """,
+                        [Já]: Dědo co tu děláte takhle večer, to je nebezpečné.
+                        [Starý muž]: Mladý muži já jsem toho už zažil, byl jsem ve vietnamu víš... Jooo to tehdy by...
+                        [Já]: Promiňte, rád bych si poslechl, jaké to bylo ve vietnamu, ale trochu spěchám, ale mějte se.
+                        [Starý muž]: Tak pokud budeš chtít slyšet více, tak já tu budu asi celou noc.
+                        """,
                 """
-                [Starý muž]: Asi to necháme na jindy, jsem nějaký unavený na mluvení.
-                """, "sluchátka", null);
+                        [Starý muž]: Asi to necháme na jindy, jsem nějaký unavený na mluvení.
+                        """, "sluchátka", null);
         ulicePodLipami.vlozPostavu(staryMuz);
 
         // === Naplnění místnosti - Před kolejí ===
@@ -307,21 +306,20 @@ public class HerniPlan {
 
         PostavaVedlejsi prodavac = new PostavaVedlejsi("prodavač", false, false,
                 """
-                [Já]: Mohu si něco koupit?
-                [Prodavač]: Určitě, pokud máš peníze a pobereš to.
-                (Stačí napsat kup a pak předmět, pokud se chceš podívat na cenu, tak napiš cena a předmět)
-                """,
+                        [Já]: Mohu si něco koupit?
+                        [Prodavač]: Určitě, pokud máš peníze a pobereš to.
+                        (Stačí napsat kup a pak předmět, pokud se chceš podívat na cenu, tak napiš cena a předmět)
+                        """,
                 """
-                [Prodavač]: Tak co to bude.
-                (Stačí napsat kup a pak předmět, pokud se chceš podívat na cenu, tak napiš cena a předmět)
-                """, "rádio", null);
+                        [Prodavač]: Tak co to bude.
+                        (Stačí napsat kup a pak předmět, pokud se chceš podívat na cenu, tak napiš cena a předmět)
+                        """, "rádio", null);
         obchod.vlozPostavu(prodavac);
 
         // === Naplnění místnosti - Kanál ===
 
         smradlavaUlicka.vlozVec(new Vec("peníze", true, "Prachy.", false));
         smradlavaUlicka.vlozVec(new Vec("peníze", true, "Prachy.", false));
-
 
 
         // === Nastavení počátční výdrže ===
@@ -336,18 +334,18 @@ public class HerniPlan {
 
         PostavaKouzelna kouzelnyDedecek = new PostavaKouzelna("kouzelný_dědeček", false, false,
                 """
-                [Já]: Dobrý den, kde jsem se to ocitl? To snad musí být sen, nebo jsem zase se opil a někam dostal?
-                [Kouzelný dědeček]: Nazdar holomku, já jsem kouzelník Abraka.
-                [Já]: Co to říkáte? Jakože umíte nějaký supr, čupr triky?
-                [Kouzelný dědeček]: To si piš. Ale abych udělal supr tríček, tak potřebuju brýle, které má u sebe moje stará.
-                [Já]: Já vám je klidně přinesu, kde vaší starou najdu?
-                [Kouzelný dědeček]: Stačí říct slovíčko čárymáryfuk a budeš u ní. Ale pozor, je hrozná, jen tak ti je nedá.
-                [Já]: Tak já to tedy zkusím.
-                (Odemkl sis příkaz čárymáryfuk, tento příkaz lze vykonat jen v této místnosti)
-                """,
+                        [Já]: Dobrý den, kde jsem se to ocitl? To snad musí být sen, nebo jsem zase se opil a někam dostal?
+                        [Kouzelný dědeček]: Nazdar holomku, já jsem kouzelník Abraka.
+                        [Já]: Co to říkáte? Jakože umíte nějaký supr, čupr triky?
+                        [Kouzelný dědeček]: To si piš. Ale abych udělal supr tríček, tak potřebuju brýle, které má u sebe moje stará.
+                        [Já]: Já vám je klidně přinesu, kde vaší starou najdu?
+                        [Kouzelný dědeček]: Stačí říct slovíčko čárymáryfuk a budeš u ní. Ale pozor, je hrozná, jen tak ti je nedá.
+                        [Já]: Tak já to tedy zkusím.
+                        (Odemkl sis příkaz čárymáryfuk, tento příkaz lze vykonat jen v této místnosti)
+                        """,
                 """
-                [Kouzelný dědeček]: Tak co, už máš moje brejle? Jak říkám, čárymáryfuk a jsi u mé staré.
-                """, "brýle", null,
+                        [Kouzelný dědeček]: Tak co, už máš moje brejle? Jak říkám, čárymáryfuk a jsi u mé staré.
+                        """, "brýle", null,
                 this);
         kouzelnaMistnost.vlozPostavu(kouzelnyDedecek);
 
@@ -358,21 +356,23 @@ public class HerniPlan {
         Prostor kouzelnaMistnost2 = new Prostor("kouzelná_místnost_čárymáry", "Kouzelná místnost čárymáryfuk, kde lze vidět starou babičku.");
 
 
-        PostavaBabicka kouzelnaBabicka = new PostavaBabicka("kouzelná_babička", false, false,
+        PostavaKouzelna kouzelnaBabicka = new PostavaKouzelna("kouzelná_babička", false, false,
                 """
-                [Já]: Dobrý den babičko, jak jsem se tu sakra dostal?
-                [Kouzelná babička]: To víš tohle jsou kouzla. Já jsem kouzelná babička čáry máry.
-                [Já]: Ach tak.
-                """,
+                        [Já]: Dobrý den babičko, neměla byste brýle pro vašeho muže?
+                        [Kouzelná babička]: No jooo, ten dědek si to tu zase nechal!
+                        [Já]: Tak já mu to přinesu.
+                        [Kouzelná babička]: Hehe pokud jsi toho hoden! Vyzkouším si tě...
+                        [Kouzelná babička]: Měříte můj život v hodinách a sloužím vám tím, že zanikám. Jsem rychlá, když jsem hubená a pomalá, když jsem tlustá. Vítr je můj nepřítel.
+                        (Teď napiš příkaz: odpověz kouzelná_babička [tvoje_odpověď])
+                        """,
                 """
-                [Kouzelná babička]: Tak co, už máš moje brejle? Jak říkám, čárymáryfuk a jsi u mé staré.
-                """, "rádio", null,
+                        [Kouzelná babička]: Tak co dědek a brýle, hehe.
+                        """, "odpověď", null,
                 this);
         kouzelnaMistnost2.vlozPostavu(kouzelnaBabicka);
 
         return kouzelnaMistnost2;
     }
-
 
 
     /**
@@ -406,7 +406,7 @@ public class HerniPlan {
             }
         } else if (operace == 2) {
             if (getVydrz() <= 0) {
-                text ="""
+                text = """
                         Bohužel jsi snědl něco co jsi neměl a usnul mimo postel.
                         Když jsi spal, tak tě někdo přepadl a ukradl ti všechno oblečení
                         Nahej jít na zkoušku nemůžeš a tak jsi ji nestihl.
@@ -418,7 +418,6 @@ public class HerniPlan {
 
     /**
      * Metoda zakončí hru
-     *
      */
 
     public void ukoncitHru() {
@@ -434,7 +433,7 @@ public class HerniPlan {
     public String moznostiKonceKolej() {
         Batoh batoh = getBatoh();
         String text;
-        if (  (batoh.obsahujeVec("peněženka")) && (batoh.obsahujeVec("telefon")) ) {
+        if ((batoh.obsahujeVec("peněženka")) && (batoh.obsahujeVec("telefon"))) {
             text = """
                     Tvé ztracené věci co jsi našel: peněženka, telefon,\s
 
@@ -442,26 +441,26 @@ public class HerniPlan {
                     ten ti nechtěl telefon zvednout, ale když jsi slyšel za dveřmi, že mu vyzvání, tak jsi zakřičel >Vstávej Pepků!< a on ti otevřel.
 
                     Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!""";
-        } else if ( batoh.obsahujeVec("telefon") && batoh.obsahujeVec("klíče") ) {
+        } else if (batoh.obsahujeVec("telefon") && batoh.obsahujeVec("klíče")) {
             text = """
                     Tvé ztracené věci co jsi našel: telefon, klíče,\s
 
                     Super, dostal ses na kolej bez problému, škoda že sis nenašel peněženku, ale snad tam nebylo nic důležitého
 
                     Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!""";
-        } else if ( batoh.obsahujeVec("klíče") ) {
+        } else if (batoh.obsahujeVec("klíče")) {
             text = """
                     Tvé ztracené věci co jsi našel: klíče,\s
 
                     Super, dostal ses na kolej bez problému, doufej, že se najde tvůj mobil a peněženka
 
                     Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!""";
-        } else if ( batoh.obsahujeVec("peněženka") ) {
+        } else if (batoh.obsahujeVec("peněženka")) {
             text = """
                     Tvé ztracené věci co jsi našel: peněženka,\s
                     Prohra. Dostal ses na kolej, ale nemáš ani klíče, kterýma by ses dostal na pokoj.
                     Budík (mobil) tě ráno nevzbudil a tak jsi zaspal test.""";
-        }   else if ( batoh.obsahujeVec("telefon") ) {
+        } else if (batoh.obsahujeVec("telefon")) {
             text = """
                     Tvé ztracené věci co jsi našel: telefon,\s
 
@@ -470,7 +469,7 @@ public class HerniPlan {
 
                     Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!""";
         } else {
-            text =  "\nProhra. Ráno ses neprobudil a zapsal test.";
+            text = "\nProhra. Ráno ses neprobudil a zapsal test.";
         }
 
         return text;

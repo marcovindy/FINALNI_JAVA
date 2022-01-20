@@ -47,10 +47,22 @@ public class PrikazDej implements IPrikaz {
                 } else {
                     plan.getBatoh().vyhodVec(vec);
                     text = pozadovanaVec + " předána postavě " + pozadovanaPostava;
+                    if ( jeKouzelnyDedecek(pozadovanaPostava) ) {
+                        text += "\n[Kouzelný dědeček]: Díky mladej a teď musíš do postele, abys dal statistiku! Abrakadabra!";
+                        text += "\nDokončil jsi easter egg! Vyhráváš! Děda tě přenesl na kolej do postele.";
+                        plan.ukoncitHru();
+                    }
                 }
             }
         }
         return text;
+    }
+
+    public boolean jeKouzelnyDedecek(String jmeno){
+        if ( jmeno.equals("kouzelný_dědeček") ) {
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -35,26 +35,26 @@ public class PrikazAbrakadabra implements IPrikaz {
     public String provedPrikaz(String... parametry) {
         String text = "";
         if (parametry.length == 0) {
-            if (plan.getAktualniProstor().getNazev().equals("kouzelná_místnost_čárymáry")) {
-                text += "Hehe, odsud se jen tak nedostaneš, musíš za babičkou";
-            } else {
 
-                if (!(prostorVytvoren)) {
-                    prostorVytvoren = true;
-                    abrakadabraProstor = plan.vytvorPrvniKouzelnaMistnost();
-                }
-
-                if (plan.getAktualniProstor().getNazev().equals("kouzelná_místnost_abraka")) {
-                    plan.setAktualniProstor(minulyProstor);
-                    text += "Zamlží se ti před očima a přeneseš se z " + abrakadabraProstor.getNazev() + " do " + minulyProstor.getNazev();
-                } else {
-                    minulyProstor = plan.getAktualniProstor();
-                    plan.setAktualniProstor(abrakadabraProstor);
-                    text += "Zamlží se ti před očima a přeneseš se z " + minulyProstor.getNazev() + " do " + abrakadabraProstor.getNazev();
-                }
-
-                text += "\n" + plan.getAktualniProstor().dlouhyPopis(plan.getVydrz());
+            if (!(prostorVytvoren)) {
+                prostorVytvoren = true;
+                abrakadabraProstor = plan.vytvorPrvniKouzelnaMistnost();
             }
+
+            if (plan.getAktualniProstor().getNazev().equals("kouzelná_místnost_abraka")) {
+                plan.setAktualniProstor(minulyProstor);
+                text += "Zamlží se ti před očima a přeneseš se z " + abrakadabraProstor.getNazev() + " do " + minulyProstor.getNazev();
+            } else {
+                if (!(plan.getAktualniProstor().getNazev().equals("kouzelná_místnost_čárymáry"))) {
+                    minulyProstor = plan.getAktualniProstor();
+                    plan.puvodniProstor = plan.getAktualniProstor();
+                }
+                plan.setAktualniProstor(abrakadabraProstor);
+                text += "Zamlží se ti před očima a přeneseš se z " + minulyProstor.getNazev() + " do " + abrakadabraProstor.getNazev();
+            }
+
+            text += "\n" + plan.getAktualniProstor().dlouhyPopis(plan.getVydrz());
+
         } else {
             text += "Musíš napsat pouze abrakadabra";
         }

@@ -14,6 +14,7 @@ public class PrikazCarymaryfuk implements IPrikaz {
     private final HerniPlan plan;
     public boolean prostorVytvoren = false;
     public Prostor carymaryfukProstor;
+    public Prostor puvodniProstor;
 
     /**
      * Konstruktor třídy
@@ -34,6 +35,7 @@ public class PrikazCarymaryfuk implements IPrikaz {
 
     public String provedPrikaz(String... parametry) {
         String text = "";
+        puvodniProstor = plan.puvodniProstor;
 
         if ( parametry.length == 0 ) {
             if ( plan.getAktualniProstor().getNazev().equals("kouzelná_místnost_abraka") ) {
@@ -43,6 +45,10 @@ public class PrikazCarymaryfuk implements IPrikaz {
                 }
                 plan.setAktualniProstor(carymaryfukProstor);
                 text += "Zamlží se ti před očima a přeneseš se z kouzelná_místnost_abraka do " + carymaryfukProstor.getNazev();
+                text += "\n" + plan.getAktualniProstor().dlouhyPopis(plan.getVydrz());
+            } else if ( plan.getAktualniProstor().getNazev().equals("kouzelná_místnost_čárymáry") ) {
+                plan.setAktualniProstor(puvodniProstor);
+                text += "Zamlží se ti před očima a přeneseš se z kouzelná_místnost_čárymáry do " + puvodniProstor.getNazev();
                 text += "\n" + plan.getAktualniProstor().dlouhyPopis(plan.getVydrz());
             } else {
                 text += "Příkaz zde vykonat nemůžeš";
