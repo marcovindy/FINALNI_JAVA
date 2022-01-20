@@ -1,7 +1,7 @@
 package logika;
 
 /**
- * Class PostavaKouzelna - konkrétní postava
+ * Class PostavaKouzelna - konkrétní postava pro kouzelné zadání (easter egg)
  *
  * @author Marek Vaníček
  * @version 5.0
@@ -22,17 +22,6 @@ public class PostavaKouzelna extends Postava {
                            HerniPlan plan) {
         super(jmeno, probehlDulezityRozhovor, dostalaSvouVec, hlavniRec, dalsiRec, vecKterouPotrebuje, vecKterouNabidne);
         this.plan = plan;
-         }
-
-    @Override
-    public boolean dej(Vec vec) {
-        if (vec.getNazev().equals(getVecKterouPotrebuje())) {
-            setDostalaSvouVec(true);
-
-            return true;
-        }
-        return false;
-
     }
 
 

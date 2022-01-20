@@ -6,7 +6,7 @@ import java.util.Locale;
  * Třída PrikazOdpovez implementuje pro hru příkaz napoveda.
  * Tato třída je součástí jednoduché textové hry.
  *
- * @author Jarmila Pavlíčková, Luboš Pavlíček, Marek Vaníček
+ * @author  Marek Vaníček
  * @version 5.0
  * @created Leden 2022
  */
@@ -26,10 +26,10 @@ public class PrikazOdpovez implements IPrikaz {
     }
 
     /**
-     * Vrací základní nápovědu po zadání příkazu "napoveda". Nyní se vypisuje
-     * vcelku primitivní zpráva a seznam dostupných příkazů.
+     * Vrací text o tom, zda odpověď byla správná nebo také ne, v případě, že odpovídáme kouzelné babičce špatně, tak také
+     * volá konec hry pro prohru, pokud byla správná, babička vám dá předmět pro dědečka
      *
-     * @return napoveda ke hre
+     * @return text s tím, zda byla odpověď správná, či ne
      */
     @Override
     public String provedPrikaz(String... parametry) {

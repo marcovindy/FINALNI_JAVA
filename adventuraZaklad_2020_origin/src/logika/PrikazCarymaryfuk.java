@@ -1,7 +1,8 @@
 package logika;
 
 /**
- * Class PrikazCarymaryfuk - Třída slouží k ....
+ * Class PrikazCarymaryfuk - Třída slouží k teleportu hráče do další kouzelné místnosti, kde může získat předmět pro
+ * dědečka nebo prohrát hru
  *
  * @author Marek Vaníček
  * @version 5.0
@@ -27,10 +28,10 @@ public class PrikazCarymaryfuk implements IPrikaz {
     }
 
     /**
-     * Po zavolání příkazu se vypíše obsah batohu
+     * Po zavolání příkazu se teleportuje do prostoru čarymary nebo zpět posledního prostoru ve hře
      *
      * @param parametry - vola se bez parametru
-     * @return - Vrací obsah batohu
+     * @return - Vrací text jestli se teleportace povedla, nebo proč se nepovedla
      */
 
     public String provedPrikaz(String... parametry) {

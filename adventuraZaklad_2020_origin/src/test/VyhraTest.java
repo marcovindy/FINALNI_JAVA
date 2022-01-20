@@ -230,7 +230,7 @@ public class VyhraTest {
                 "Východy: před_kolejí ulice_koněvova ulice_spojovací\n" +
                 "Výdrž: 9", hra1.zpracujPrikaz("jdi ulice_pod_lipami"));
 
-        // 22. krok
+        // 24. krok
 
         assertEquals("Jsi v mistnosti/prostoru Před kolejí, už vidíš vrátnici, ale nikdo tam není. Snad se konečně dostaneš dovnitř.\n" +
                 "Věci v prostoru: lavička, bota, \n" +
@@ -238,7 +238,7 @@ public class VyhraTest {
                 "Východy: ulice_pod_lipami kolej\n" +
                 "Výdrž: 8", hra1.zpracujPrikaz("jdi před_kolejí"));
 
-        // 22. krok
+        // 25. krok
         assertEquals("před_kolejí", hra1.getHerniPlan().getAktualniProstor().getNazev());
         assertEquals("\n" +
                 "[Ja]: Ahoj.\n" +
@@ -253,10 +253,11 @@ public class VyhraTest {
                 "[Holka ze záchodů]: Nemáš náhodou oheň?\n" +
                 "[Ja]: Mám, tady si vem zapalovač, já ho potřebovat nebudu.\n", hra1.zpracujPrikaz("mluv holka_ze_záchodů"));
 
-        // 22. krok
+        // 26. krok
 
         assertEquals("zapalovač předána postavě holka_ze_záchodů", hra1.zpracujPrikaz("dej zapalovač holka_ze_záchodů"));
-        // 22. krok
+        assertFalse(hra1.konecHry());
+        // 27. krok
 
         assertEquals("Tvé ztracené věci co jsi našel: peněženka, telefon, \n" +
                 "\n" +
@@ -264,6 +265,6 @@ public class VyhraTest {
                 "ten ti nechtěl telefon zvednout, ale když jsi slyšel za dveřmi, že mu vyzvání, tak jsi zakřičel >Vstávej Pepků!< a on ti otevřel.\n" +
                 "\n" +
                 "Výhra!!! Dostal ses na kolej bez toho, aniž bys usnul někde na chodníku, gratuluji!!!", hra1.zpracujPrikaz("jdi kolej"));
-
+        assertTrue(hra1.konecHry());
     }
 }

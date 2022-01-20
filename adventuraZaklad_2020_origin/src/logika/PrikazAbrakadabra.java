@@ -1,7 +1,7 @@
 package logika;
 
 /**
- * Class PrikazAbrakadabra - Třída slouží k ....
+ * Class PrikazAbrakadabra - Třída slouží k teleportu hráče do nové místnosti, kde dostane úkol
  *
  * @author Marek Vaníček
  * @version 5.0
@@ -26,21 +26,19 @@ public class PrikazAbrakadabra implements IPrikaz {
     }
 
     /**
-     * Po zavolání příkazu se vypíše obsah batohu
+     * Po zavolání příkazu se teleportuje do prostoru abraka nebo zpět posledního prostoru ve hře
      *
      * @param parametry - vola se bez parametru
-     * @return - Vrací obsah batohu
+     * @return - Vrací text o tom, jestli se kouzlo vydařilo a hráč se teleportoval, či proč ne
      */
 
     public String provedPrikaz(String... parametry) {
         String text = "";
         if (parametry.length == 0) {
-
             if (!(prostorVytvoren)) {
                 prostorVytvoren = true;
                 abrakadabraProstor = plan.vytvorPrvniKouzelnaMistnost();
             }
-
             if (plan.getAktualniProstor().getNazev().equals("kouzelná_místnost_abraka")) {
                 plan.setAktualniProstor(minulyProstor);
                 text += "Zamlží se ti před očima a přeneseš se z " + abrakadabraProstor.getNazev() + " do " + minulyProstor.getNazev();
@@ -52,14 +50,10 @@ public class PrikazAbrakadabra implements IPrikaz {
                 plan.setAktualniProstor(abrakadabraProstor);
                 text += "Zamlží se ti před očima a přeneseš se z " + minulyProstor.getNazev() + " do " + abrakadabraProstor.getNazev();
             }
-
             text += "\n" + plan.getAktualniProstor().dlouhyPopis(plan.getVydrz());
-
         } else {
             text += "Musíš napsat pouze abrakadabra";
         }
-
-
         return text;
     }
 
