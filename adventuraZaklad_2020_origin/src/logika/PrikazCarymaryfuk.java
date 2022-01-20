@@ -10,8 +10,10 @@ package logika;
 
 public class PrikazCarymaryfuk implements IPrikaz {
 
-    private static final String NAZEV = "batoh";
+    private static final String NAZEV = "čárymáryfuk";
     private final HerniPlan plan;
+    public boolean prostorVytvoren = false;
+    public Prostor carymaryfukProstor;
 
     /**
      * Konstruktor třídy
@@ -31,7 +33,26 @@ public class PrikazCarymaryfuk implements IPrikaz {
      */
 
     public String provedPrikaz(String... parametry) {
-        return plan.getBatoh().vypisBatohu();
+        String text = "";
+
+        if ( parametry.length == 0 ) {
+            if ( plan.getAktualniProstor().getNazev().equals("kouzelná_místnost_abraka") ) {
+                if ( !(prostorVytvoren) ) {
+                    prostorVytvoren = true;
+                    carymaryfukProstor = plan.vytvorDruhaKouzelnaMistnost();
+                }
+                plan.setAktualniProstor(carymaryfukProstor);
+                text += "Zamlží se ti před očima a přeneseš se z kouzelná_místnost_abraka do " + carymaryfukProstor.getNazev();
+                text += "\n" + plan.getAktualniProstor().dlouhyPopis(plan.getVydrz());
+            } else {
+                text += "Příkaz zde vykonat nemůžeš";
+            }
+        } else {
+            text += "Příkaz napsat jen samotný, jako čárymáryfuk";
+        }
+
+
+        return text;
     }
 
     /**

@@ -354,7 +354,7 @@ public class HerniPlan {
         return kouzelnaMistnost;
     }
 
-    public Boolean vytvorDruhaKouzelnaMistnost() {
+    public Prostor vytvorDruhaKouzelnaMistnost() {
         Prostor kouzelnaMistnost2 = new Prostor("kouzelná_místnost_čárymáry", "Kouzelná místnost čárymáryfuk, kde lze vidět starou babičku.");
 
 
@@ -370,7 +370,7 @@ public class HerniPlan {
                 this);
         kouzelnaMistnost2.vlozPostavu(kouzelnaBabicka);
 
-        return true;
+        return kouzelnaMistnost2;
     }
 
 

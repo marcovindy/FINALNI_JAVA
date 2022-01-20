@@ -53,7 +53,7 @@ public class PrikazAbrakadabra implements IPrikaz {
                     text += "Zamlží se ti před očima a přeneseš se z " + minulyProstor.getNazev() + " do " + abrakadabraProstor.getNazev();
                 }
 
-                text += plan.getAktualniProstor().dlouhyPopis(plan.getVydrz());
+                text += "\n" + plan.getAktualniProstor().dlouhyPopis(plan.getVydrz());
             }
         } else {
             text += "Musíš napsat pouze abrakadabra";
